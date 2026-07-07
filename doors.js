@@ -21,6 +21,32 @@ window.REDOOR_DATA = {
     lastUpdated: "2026-07-07"
   },
 
+  // Reputation / Google reviews trust section.
+  reputation: {
+    owner: "Matthew Hannigan",
+    formerBusiness: "Matthew Hannigan Garage Doors",
+    rating: 5.0,
+    reviewCount: 45,
+    reviewsUrl: "https://www.google.com/search?q=Matthew+Hannigan+Garage+Doors",
+    intro:
+      "ReDoor is run by Matthew Hannigan. His garage-door business earned a straight 5.0 across 45 Google reviews — the same honest advice and tidy work now goes into every door here.",
+    standouts: ["Honest advice", "Punctual & efficient", "Colour & style matching", "Competitive prices"],
+    quotes: [
+      {
+        name: "Daz Davies",
+        text: "Really good service and brilliant result. Especially grateful for all the advice on style and colour matching. Definitely recommend Matthew to others."
+      },
+      {
+        name: "Mrs Bray",
+        text: "After contacting three garage door companies, Matthew came across as very honest, and knew exactly what I wanted."
+      },
+      {
+        name: "Sue Johnson",
+        text: "Great service. Matthew arrived on time to give us our quote, and was punctual and efficient."
+      }
+    ]
+  },
+
   // "Paint any door" service — edit prices or colours here.
   paintService: {
     heading: "Paint any door to order",

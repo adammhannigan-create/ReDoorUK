@@ -315,6 +315,99 @@
     font-size: 0.9rem;
   }
 
+  /* ---------- Hero rating pill ---------- */
+  .rating-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 12px 5px 10px;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    background: var(--surface);
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .rating-pill:hover { border-color: var(--ink); }
+  .rating-pill .stars { color: #E0A100; letter-spacing: 1px; font-size: 0.82rem; }
+  .rating-pill b { font-weight: 700; }
+  .rating-pill .lbl { color: var(--ink-soft); font-size: 0.72rem; }
+
+  /* ---------- Reviews / trust section ---------- */
+  .reviews { padding: clamp(44px, 6vw, 72px) 0 clamp(24px, 3vw, 40px); border-top: 1px solid var(--line); }
+  .reviews-top {
+    display: grid;
+    grid-template-columns: minmax(220px, 300px) 1fr;
+    gap: clamp(24px, 4vw, 56px);
+    align-items: center;
+    margin-bottom: 34px;
+  }
+  .rep-badge {
+    border: 1px solid var(--line);
+    background: var(--surface);
+    border-radius: 12px;
+    padding: 22px 24px;
+    text-align: center;
+  }
+  .rep-badge .score { font-family: var(--font-display); font-weight: 700; font-size: 3.4rem; line-height: 1; letter-spacing: -0.03em; }
+  .rep-badge .stars { color: #E0A100; font-size: 1.15rem; letter-spacing: 2px; margin: 8px 0 6px; }
+  .rep-badge .count { font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-soft); }
+  .rep-badge .biz { font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-soft); margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line); }
+  .reviews-lead h2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.5rem, 2.8vw, 2.1rem);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin: 0 0 12px;
+    text-wrap: balance;
+  }
+  .reviews-lead p { margin: 0 0 16px; color: var(--ink-soft); max-width: 56ch; text-wrap: pretty; }
+  .standouts { display: flex; flex-wrap: wrap; gap: 8px; }
+  .standouts .chip {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    padding: 5px 11px;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    color: var(--ink);
+    background: var(--surface);
+  }
+  .quote-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
+  }
+  .review-card {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--surface);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .review-card .rc-stars { color: #E0A100; font-size: 0.86rem; letter-spacing: 1.5px; }
+  .review-card blockquote { margin: 0; font-size: 0.94rem; line-height: 1.5; color: var(--ink); text-wrap: pretty; }
+  .review-card .rc-name { font-family: var(--font-mono); font-size: 0.76rem; color: var(--ink-soft); margin-top: auto; }
+  .reviews-more { margin-top: 22px; }
+  .reviews-more a {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--accent-deep);
+    text-decoration: none;
+    border-bottom: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+    padding-bottom: 1px;
+  }
+  .reviews-more a:hover { border-bottom-color: var(--accent); }
+
+  @media (max-width: 680px) {
+    .reviews-top { grid-template-columns: 1fr; gap: 22px; }
+    .rep-badge { display: flex; align-items: center; justify-content: center; gap: 18px; text-align: left; }
+    .rep-badge .score { font-size: 2.6rem; }
+    .rep-badge .biz { border-top: none; border-left: 1px solid var(--line); padding: 0 0 0 16px; margin: 0; }
+    .rep-badge .stars { margin: 4px 0; }
+  }
+
   /* ---------- Paint service band ---------- */
   .paint {
     background: var(--accent);
@@ -445,6 +538,8 @@
   <section class="paint" id="paint" hidden>
     <div class="wrap paint-inner" id="paintInner"></div>
   </section>
+
+  <section class="reviews wrap" id="reviews" hidden></section>
 </main>
 
 <footer class="site">
@@ -504,6 +599,16 @@
   var sold = doors.filter(function (d) { return d.status === "sold"; });
 
   var metaBits = [];
+  var rep0 = D.reputation;
+  if (rep0 && rep0.rating) {
+    metaBits.push(
+      '<a class="rating-pill" href="' + esc(rep0.reviewsUrl || "#") + '" target="_blank" rel="noopener">' +
+        '<span class="stars">★★★★★</span> ' +
+        '<b>' + rep0.rating.toFixed(1) + '</b> ' +
+        '<span class="lbl">' + esc(rep0.reviewCount) + ' Google reviews</span>' +
+      '</a>'
+    );
+  }
   metaBits.push('<span><span class="dot"></span><b>' + avail.length + '</b> available now</span>');
   if (cfg.area) metaBits.push("<span>" + esc(cfg.area) + "</span>");
   if (cfg.lastUpdated) metaBits.push("<span>Updated " + esc(cfg.lastUpdated) + "</span>");
@@ -518,6 +623,43 @@
   if (cfg.contactPhone) footParts.push('<a href="tel:' + esc(cfg.contactPhone.replace(/\s+/g, "")) + '">' + esc(cfg.contactPhone) + "</a>");
   if (cfg.area) footParts.push(esc(cfg.area));
   document.getElementById("footContact").innerHTML = footParts.join("<br>");
+
+  // ---- Reviews / trust section ----
+  var rep = D.reputation;
+  if (rep && rep.quotes && rep.quotes.length) {
+    var standoutChips = (rep.standouts || []).map(function (s) {
+      return '<span class="chip">' + esc(s) + "</span>";
+    }).join("");
+    var quoteCards = rep.quotes.map(function (q) {
+      return (
+        '<figure class="review-card">' +
+          '<div class="rc-stars">★★★★★</div>' +
+          "<blockquote>&ldquo;" + esc(q.text) + "&rdquo;</blockquote>" +
+          '<figcaption class="rc-name">' + esc(q.name) + "</figcaption>" +
+        "</figure>"
+      );
+    }).join("");
+    var moreLink = rep.reviewsUrl
+      ? '<div class="reviews-more"><a href="' + esc(rep.reviewsUrl) + '" target="_blank" rel="noopener">Read all ' + esc(rep.reviewCount) + " reviews on Google &rarr;</a></div>"
+      : "";
+    document.getElementById("reviews").innerHTML =
+      '<div class="reviews-top">' +
+        '<div class="rep-badge">' +
+          '<div class="score">' + rep.rating.toFixed(1) + "</div>" +
+          '<div class="stars">★★★★★</div>' +
+          '<div class="count">' + esc(rep.reviewCount) + " Google reviews</div>" +
+          (rep.formerBusiness ? '<div class="biz">' + esc(rep.formerBusiness) + "</div>" : "") +
+        "</div>" +
+        '<div class="reviews-lead">' +
+          "<h2>Over a decade of five-star work</h2>" +
+          (rep.intro ? "<p>" + esc(rep.intro) + "</p>" : "") +
+          (standoutChips ? '<div class="standouts">' + standoutChips + "</div>" : "") +
+        "</div>" +
+      "</div>" +
+      '<div class="quote-grid">' + quoteCards + "</div>" +
+      moreLink;
+    document.getElementById("reviews").hidden = false;
+  }
 
   // ---- Paint service band ----
   var ps = D.paintService;
