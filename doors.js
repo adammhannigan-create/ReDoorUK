@@ -37,6 +37,24 @@ window.REDOOR_DATA = {
 
   doors: [
     {
+      id: "d-20260707-green-roller",
+      title: "Green insulated roller, electric",
+      type: "Roller (electric)",
+      price: 320,
+      priceNote: "",
+      condition: "Very good",
+      age: "≈5 years",
+      size: "2400 × 2100 mm (2.4m × 2.1m)",
+      sizeAdjustable: false,
+      sizeNote: "",
+      colourOptions: ["Current green", "Respray to any RAL — see below"],
+      description:
+        "Insulated electric roller door in really good condition, only around five years old. Comes with its remote and works perfectly. Can be resprayed to another colour if you'd prefer.",
+      photos: [],
+      status: "available",
+      dateAdded: "2026-07-07"
+    },
+    {
       id: "d-20260707-white-sectional",
       title: "White sectional, block-panel",
       type: "Sectional",
