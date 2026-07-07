@@ -30,19 +30,27 @@ window.REDOOR_DATA = {
     reviewsUrl: "https://www.google.com/search?q=Matthew+Hannigan+Garage+Doors",
     intro:
       "ReDoor is run by Matthew Hannigan. His garage-door business earned a straight 5.0 across 45 Google reviews — the same honest advice and tidy work now goes into every door here.",
-    standouts: ["Honest advice", "Punctual & efficient", "Colour & style matching", "Competitive prices"],
+    standouts: ["Fair, honest pricing", "Fast & emergency call-outs", "Expert advice", "Quality workmanship", "Bespoke colours & sizes"],
     quotes: [
+      {
+        name: "Steve Mcloughlin",
+        text: "Miles cheaper than any of my other quotes but the service was the best by far, and had the most knowledge and the biggest range. Great door, great price and great service."
+      },
+      {
+        name: "Amanda Foy",
+        text: "Charged less than quoted, as he told me it wasn't as big a job as he thought and showed me the problem. Really honest and trustworthy guy."
+      },
+      {
+        name: "Russell Whitwell",
+        text: "I thought the other reviews all seemed too good to be true, but he really is this good! Fixed a tricky door problem quickly and at a good price."
+      },
+      {
+        name: "David Rooke",
+        text: "Rang Matthew this afternoon for help with the door sticking, he was here within the hour, repaired it and gave advice to avoid a repeat. Great service, great price."
+      },
       {
         name: "Daz Davies",
         text: "Really good service and brilliant result. Especially grateful for all the advice on style and colour matching. Definitely recommend Matthew to others."
-      },
-      {
-        name: "Mrs Bray",
-        text: "After contacting three garage door companies, Matthew came across as very honest, and knew exactly what I wanted."
-      },
-      {
-        name: "Sue Johnson",
-        text: "Great service. Matthew arrived on time to give us our quote, and was punctual and efficient."
       }
     ]
   },
