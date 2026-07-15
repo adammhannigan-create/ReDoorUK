@@ -240,6 +240,53 @@
   }
   .filter .n { opacity: 0.6; }
 
+  .type-filters { display: flex; gap: 8px; flex-wrap: wrap; }
+  .controls-right { display: flex; gap: 12px; align-items: center; margin-left: auto; }
+  .unit-switch {
+    display: inline-flex;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .unit-switch button {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.02em;
+    padding: 6px 11px;
+    background: transparent;
+    border: none;
+    border-right: 1px solid var(--line);
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: background .16s var(--ease), color .16s var(--ease);
+  }
+  .unit-switch button:last-child { border-right: none; }
+  .unit-switch button:hover { color: var(--ink); }
+  .unit-switch button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+  .status-select { position: relative; }
+  .status-select select {
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    padding: 7px 30px 7px 14px;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--ink);
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .status-select select:hover { border-color: var(--ink); }
+  .status-select::after {
+    content: "";
+    position: absolute; right: 13px; top: 50%;
+    width: 6px; height: 6px;
+    border-right: 1.5px solid var(--ink-soft);
+    border-bottom: 1.5px solid var(--ink-soft);
+    transform: translateY(-70%) rotate(45deg);
+    pointer-events: none;
+  }
+
   /* ---------- Grid ---------- */
   .grid {
     display: grid;
@@ -282,6 +329,41 @@
       linear-gradient(#E8EAED, #D6DADE);
   }
   .photo .ph svg { width: 58%; height: auto; opacity: 0.5; }
+
+  /* photo carousel (multi-image) */
+  .carousel { position: absolute; inset: 0; overflow: hidden; }
+  .car-track { display: flex; height: 100%; transition: transform .4s var(--ease); }
+  .car-track img { min-width: 100%; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .car-btn {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 34px; height: 34px; border-radius: 50%;
+    border: none; cursor: pointer;
+    background: color-mix(in srgb, var(--surface) 82%, transparent);
+    color: var(--ink);
+    display: grid; place-items: center;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 2px 8px -2px rgba(0,0,0,0.3);
+    transition: background .16s var(--ease), opacity .16s var(--ease);
+    opacity: 0; z-index: 2;
+  }
+  .photo:hover .car-btn, .car-btn:focus-visible { opacity: 1; }
+  .car-btn:hover { background: var(--surface); }
+  .car-btn.prev { left: 10px; }
+  .car-btn.next { right: 10px; }
+  .car-btn svg { width: 16px; height: 16px; }
+  .car-dots {
+    position: absolute; bottom: 10px; left: 0; right: 0;
+    display: flex; justify-content: center; gap: 6px; z-index: 2;
+  }
+  .car-dots button {
+    width: 7px; height: 7px; border-radius: 50%; padding: 0;
+    border: none; cursor: pointer;
+    background: color-mix(in srgb, var(--surface) 60%, transparent);
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.15);
+    transition: background .16s var(--ease);
+  }
+  .car-dots button[aria-current="true"] { background: var(--surface); }
+  @media (hover: none) { .car-btn { opacity: 1; } }
 
   .stamp {
     position: absolute;
@@ -491,6 +573,72 @@
     .rep-badge .stars { margin: 4px 0; }
   }
 
+  /* ---------- Environmental section ---------- */
+  .eco { padding: clamp(44px, 6vw, 76px) 0; border-top: 1px solid var(--line); }
+  .eco-inner {
+    display: grid;
+    grid-template-columns: 0.82fr 1.18fr;
+    gap: clamp(28px, 5vw, 60px);
+    align-items: center;
+  }
+  .eco-stat {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 30px 26px;
+    text-align: center;
+  }
+  .eco-figure {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(3.6rem, 8vw, 5.6rem);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    color: var(--accent);
+  }
+  .eco-figure .pct { color: var(--avail); }
+  .eco-figure-label {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin-top: 14px;
+  }
+  .eco-copy h2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+    margin: 0 0 14px;
+    text-wrap: balance;
+  }
+  .eco-copy p { margin: 0 0 18px; color: var(--ink-soft); max-width: 62ch; text-wrap: pretty; }
+  .eco-points { list-style: none; margin: 0 0 18px; padding: 0; display: grid; gap: 10px; }
+  .eco-points li { position: relative; padding-left: 28px; font-size: 0.95rem; line-height: 1.45; }
+  .eco-points li::before {
+    content: "";
+    position: absolute; left: 0; top: 3px;
+    width: 17px; height: 17px; border-radius: 50%;
+    background: var(--avail);
+  }
+  .eco-points li::after {
+    content: "";
+    position: absolute; left: 5px; top: 8px;
+    width: 6px; height: 3px;
+    border-left: 1.6px solid var(--avail-ink);
+    border-bottom: 1.6px solid var(--avail-ink);
+    transform: rotate(-45deg);
+  }
+  .eco-source { font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-soft); }
+  .eco-source a { color: var(--ink-soft); text-decoration: underline; text-underline-offset: 2px; }
+  .eco-source a:hover { color: var(--accent); }
+
+  @media (max-width: 720px) {
+    .eco-inner { grid-template-columns: 1fr; gap: 26px; }
+    .eco-stat { max-width: 320px; }
+  }
+
   /* ---------- Paint service band ---------- */
   .paint {
     background: var(--accent);
@@ -625,16 +773,39 @@
   </section>
 
   <div class="controls">
-    <div class="wrap controls-inner" id="filters" role="group" aria-label="Filter doors">
-      <button class="filter" data-filter="available" aria-pressed="true">Available <span class="n" id="cAvail"></span></button>
-      <button class="filter" data-filter="all" aria-pressed="false">All <span class="n" id="cAll"></span></button>
-      <button class="filter" data-filter="sold" aria-pressed="false">Sold <span class="n" id="cSold"></span></button>
+    <div class="wrap controls-inner">
+      <div class="type-filters" id="typeFilters" role="group" aria-label="Filter by door type">
+        <button class="filter" data-type="all" aria-pressed="true">All</button>
+        <button class="filter" data-type="Sectional" aria-pressed="false">Sectional</button>
+        <button class="filter" data-type="Roller" aria-pressed="false">Roller</button>
+        <button class="filter" data-type="Up and Over" aria-pressed="false">Up &amp; Over</button>
+        <button class="filter" data-type="Side Hinged" aria-pressed="false">Side Hinged</button>
+      </div>
+      <div class="controls-right">
+        <div class="unit-switch" id="unitSwitch" role="group" aria-label="Measurement units">
+          <button data-unit="mm" aria-pressed="true">MM</button>
+          <button data-unit="cm" aria-pressed="false">CM</button>
+          <button data-unit="in" aria-pressed="false">INCH</button>
+          <button data-unit="ft" aria-pressed="false">FT</button>
+        </div>
+        <div class="status-select">
+          <select id="statusSelect" aria-label="Show doors by availability">
+            <option value="available" selected>Available</option>
+            <option value="all">All</option>
+            <option value="sold">Sold</option>
+          </select>
+        </div>
+      </div>
     </div>
   </div>
 
   <div class="wrap" id="stock">
     <div class="grid" id="grid"></div>
   </div>
+
+  <section class="eco" id="eco" hidden>
+    <div class="wrap eco-inner" id="ecoInner"></div>
+  </section>
 
   <section class="paint" id="paint" hidden>
     <div class="wrap paint-inner" id="paintInner"></div>
@@ -731,7 +902,9 @@
     var fspec = [];
     if (feat.type) fspec.push(esc(feat.type));
     if (feat.condition) fspec.push(esc(feat.condition));
-    if (feat.size) fspec.push(esc(feat.size));
+    if (feat.dim && feat.dim.w && feat.dim.h) {
+      fspec.push('<span class="szv" data-w="' + feat.dim.w + '" data-h="' + feat.dim.h + '">' + sizeText(feat.dim, "mm") + "</span>");
+    } else if (feat.size) fspec.push(esc(feat.size));
     else if (feat.age) fspec.push(esc(feat.age));
     document.getElementById("heroFeature").innerHTML =
       '<div class="hf-photo">' + fphoto + '<div class="hf-tag">IN STOCK NOW</div></div>' +
@@ -825,16 +998,54 @@
     document.getElementById("paint").hidden = false;
   }
 
-  // ---- counts ----
-  document.getElementById("cAvail").textContent = avail.length;
-  document.getElementById("cAll").textContent = doors.length;
-  document.getElementById("cSold").textContent = sold.length;
+  // ---- Environmental section ----
+  var env = D.environment;
+  if (env) {
+    var pts = (env.points || []).map(function (p) { return "<li>" + esc(p) + "</li>"; }).join("");
+    var statHtml = esc(env.stat) + (String(env.stat).indexOf("%") < 0 ? '<span class="pct">%</span>' : "");
+    document.getElementById("ecoInner").innerHTML =
+      '<div class="eco-stat">' +
+        '<div class="eco-figure">' + statHtml + "</div>" +
+        '<div class="eco-figure-label">' + esc(env.statLabel || "") + "</div>" +
+      "</div>" +
+      '<div class="eco-copy">' +
+        "<h2>" + esc(env.heading) + "</h2>" +
+        (env.body ? "<p>" + esc(env.body) + "</p>" : "") +
+        (pts ? '<ul class="eco-points">' + pts + "</ul>" : "") +
+        (env.source
+          ? '<div class="eco-source">Source: ' + (env.sourceUrl
+              ? '<a href="' + esc(env.sourceUrl) + '" target="_blank" rel="noopener">' + esc(env.source) + "</a>"
+              : esc(env.source)) + "</div>"
+          : "") +
+      "</div>";
+    document.getElementById("eco").hidden = false;
+  }
 
-  // ---- sort: available (newest first) then sold (newest first) ----
+  // ---- measurement units ----
+  var currentUnit = "mm";
+  function round1(n) { return (Math.round(n * 10) / 10).toString(); }
+  function conv(mm, u) {
+    if (u === "cm") return round1(mm / 10);
+    if (u === "in") return round1(mm / 25.4);
+    if (u === "ft") return round1(mm / 304.8);
+    return Math.round(mm).toString();
+  }
+  function sizeText(dim, u) {
+    if (!dim || !dim.w || !dim.h) return "";
+    return conv(dim.w, u) + " × " + conv(dim.h, u) + " " + u;
+  }
+
+  var ARROW_L = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>';
+  var ARROW_R = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>';
+
   function byDateDesc(a, b) {
     return String(b.dateAdded || "").localeCompare(String(a.dateAdded || ""));
   }
-  var ordered = avail.slice().sort(byDateDesc).concat(sold.slice().sort(byDateDesc));
+  function orderCmp(a, b) {
+    var sa = a.status === "sold" ? 1 : 0, sb = b.status === "sold" ? 1 : 0;
+    if (sa !== sb) return sa - sb;
+    return byDateDesc(a, b);
+  }
 
   var grid = document.getElementById("grid");
   var io = ("IntersectionObserver" in window)
@@ -850,32 +1061,54 @@
     return '<div class="row"><div class="k">' + esc(k) + '</div><div class="v">' + v + "</div></div>";
   }
 
+  function photoBlock(d) {
+    if (d.photos && d.photos.length > 1) {
+      var imgs = d.photos.map(function (p) {
+        return '<img src="' + esc(p) + '" alt="' + esc(d.title) + '" loading="lazy" />';
+      }).join("");
+      var dots = d.photos.map(function (p, idx) {
+        return '<button type="button" class="cdot" data-i="' + idx + '" aria-current="' + (idx === 0 ? "true" : "false") + '" aria-label="Photo ' + (idx + 1) + '"></button>';
+      }).join("");
+      return '<div class="carousel" data-i="0">' +
+          '<div class="car-track">' + imgs + "</div>" +
+          '<button type="button" class="car-btn prev" aria-label="Previous photo">' + ARROW_L + "</button>" +
+          '<button type="button" class="car-btn next" aria-label="Next photo">' + ARROW_R + "</button>" +
+          '<div class="car-dots">' + dots + "</div>" +
+        "</div>";
+    }
+    if (d.photos && d.photos.length === 1) {
+      return '<img src="' + esc(d.photos[0]) + '" alt="' + esc(d.title) + '" loading="lazy" />';
+    }
+    return '<div class="ph">' + DOOR_SVG + "</div>";
+  }
+
+  function sizeCell(d) {
+    var inner = "";
+    if (d.dim && d.dim.w && d.dim.h) {
+      inner = '<span class="szv" data-w="' + d.dim.w + '" data-h="' + d.dim.h + '">' + sizeText(d.dim, currentUnit) + "</span>";
+    } else if (d.size) {
+      inner = esc(d.size);
+    }
+    if (inner && d.sizeAdjustable) {
+      inner += ' <span class="adj">· ' + esc(d.sizeNote || "adjustable") + "</span>";
+    }
+    return inner;
+  }
+
   function cardHTML(d) {
-    var sizeVal = esc(d.size || "");
-    if (d.sizeAdjustable) {
-      sizeVal += ' <span class="adj">· ' + esc(d.sizeNote || "adjustable") + "</span>";
-    }
-    var photo;
-    if (d.photos && d.photos.length) {
-      photo = '<img src="' + esc(d.photos[0]) + '" alt="' + esc(d.title) + '" loading="lazy" />';
-    } else {
-      photo = '<div class="ph">' + DOOR_SVG + "</div>";
-    }
     var stamp = d.status === "sold"
       ? '<div class="stamp sold">SOLD</div>'
       : (d.dateAdded ? '<div class="stamp">NEW IN</div>' : "");
-
     var chips = (d.colourOptions || []).map(function (c) {
       return '<span class="chip">' + esc(c) + "</span>";
     }).join("");
-
     var cta = d.status === "sold"
       ? '<span class="ask disabled">Sold</span>'
       : '<a class="ask" href="' + mailtoFor(d) + '">Ask about this door &rarr;</a>';
 
     return (
       '<article class="door ' + (d.status === "sold" ? "sold" : "") + '">' +
-        '<div class="photo">' + photo + stamp + "</div>" +
+        '<div class="photo">' + photoBlock(d) + stamp + "</div>" +
         '<div class="door-body">' +
           '<div class="door-head">' +
             '<h2 class="door-title">' + esc(d.title) + "</h2>" +
@@ -888,7 +1121,7 @@
             specRow("Type", esc(d.type)) +
             specRow("Condition", esc(d.condition)) +
             specRow("Age", esc(d.age)) +
-            specRow("Size", sizeVal) +
+            specRow("Size", sizeCell(d)) +
           "</div>" +
           (chips ? '<div class="colours">' + chips + "</div>" : "") +
           '<div class="door-foot">' + cta + "</div>" +
@@ -897,16 +1130,20 @@
     );
   }
 
-  var current = "available";
+  var currentType = "all";
+  var currentStatus = "available";
 
-  function render(filter) {
-    current = filter;
-    var list = filter === "all" ? ordered
-      : filter === "sold" ? sold.slice().sort(byDateDesc)
-      : avail.slice().sort(byDateDesc);
+  function passesType(d) { return currentType === "all" ? true : d.category === currentType; }
+  function passesStatus(d) {
+    if (currentStatus === "all") return true;
+    if (currentStatus === "sold") return d.status === "sold";
+    return d.status !== "sold";
+  }
 
+  function render() {
+    var list = doors.filter(function (d) { return passesType(d) && passesStatus(d); }).sort(orderCmp);
     if (!list.length) {
-      grid.innerHTML = '<div class="empty">No doors to show here right now. Check back soon.</div>';
+      grid.innerHTML = '<div class="empty">No doors of that type to show right now. Try another filter, or check back soon.</div>';
       return;
     }
     grid.innerHTML = list.map(cardHTML).join("");
@@ -918,16 +1155,62 @@
     }
   }
 
-  var btns = document.querySelectorAll(".filter");
-  Array.prototype.forEach.call(btns, function (b) {
+  // type filter buttons
+  var typeBtns = document.querySelectorAll("#typeFilters .filter");
+  Array.prototype.forEach.call(typeBtns, function (b) {
     b.addEventListener("click", function () {
-      Array.prototype.forEach.call(btns, function (x) { x.setAttribute("aria-pressed", "false"); });
+      Array.prototype.forEach.call(typeBtns, function (x) { x.setAttribute("aria-pressed", "false"); });
       b.setAttribute("aria-pressed", "true");
-      render(b.getAttribute("data-filter"));
+      currentType = b.getAttribute("data-type");
+      render();
     });
   });
 
-  render("available");
+  // status dropdown
+  var statusSel = document.getElementById("statusSelect");
+  if (statusSel) statusSel.addEventListener("change", function () {
+    currentStatus = statusSel.value;
+    render();
+  });
+
+  // unit switch
+  var unitBtns = document.querySelectorAll("#unitSwitch button");
+  Array.prototype.forEach.call(unitBtns, function (b) {
+    b.addEventListener("click", function () {
+      Array.prototype.forEach.call(unitBtns, function (x) { x.setAttribute("aria-pressed", "false"); });
+      b.setAttribute("aria-pressed", "true");
+      currentUnit = b.getAttribute("data-unit");
+      var cells = document.querySelectorAll(".szv");
+      for (var i = 0; i < cells.length; i++) {
+        cells[i].textContent = sizeText(
+          { w: +cells[i].getAttribute("data-w"), h: +cells[i].getAttribute("data-h") },
+          currentUnit
+        );
+      }
+    });
+  });
+
+  // carousel navigation (event delegation)
+  grid.addEventListener("click", function (e) {
+    var car = e.target.closest ? e.target.closest(".carousel") : null;
+    if (!car) return;
+    var isNext = e.target.closest(".car-btn.next");
+    var isPrev = e.target.closest(".car-btn.prev");
+    var dot = e.target.closest(".cdot");
+    var track = car.querySelector(".car-track");
+    var n = track.children.length;
+    var i = parseInt(car.getAttribute("data-i") || "0", 10);
+    if (isNext) i = (i + 1) % n;
+    else if (isPrev) i = (i - 1 + n) % n;
+    else if (dot) i = parseInt(dot.getAttribute("data-i"), 10);
+    else return;
+    car.setAttribute("data-i", i);
+    track.style.transform = "translateX(-" + (i * 100) + "%)";
+    var dots = car.querySelectorAll(".cdot");
+    for (var k = 0; k < dots.length; k++) dots[k].setAttribute("aria-current", k === i ? "true" : "false");
+  });
+
+  render();
 })();
 </script>
 </body>

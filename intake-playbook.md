@@ -32,17 +32,23 @@ Search Gmail, skipping anything already handled (label `ReDoor/Done`, id `Label_
 ### 2. For each NEW DOOR email
 - `get_thread` with FULL_CONTENT to read the body and see attachment filenames.
 - Read the details out of the plain-English body and map them to these fields:
-  `title, type, price, priceNote, condition, age, size, sizeAdjustable,
-  sizeNote, colourOptions[], description`.
+  `title, type, price, priceNote, condition, age, colourOptions[], description`.
   - Fill in sensibly. If a field isn't mentioned, leave it out rather than guess.
   - Write a short, warm 1–2 sentence `description` in ReDoor's voice (plain,
     human, no salesy filler). Rewrite Dad's notes cleanly; don't invent facts.
+- `category`: MUST be exactly one of `"Sectional"`, `"Roller"`, `"Up and Over"`,
+  `"Side Hinged"`. The site's type-filter buttons rely on this. Infer from the type.
+- `dim`: dimensions in **millimetres** as `{ w: <width>, h: <height> }` (add `d`
+  for depth only if given). Convert whatever units Dad uses (ft / in / cm) into mm —
+  the site converts mm to CM/INCH/FT for the visitor, so always store mm. Omit if no
+  size given. Also set `sizeAdjustable` (true/false) and `sizeNote` if he mentions it.
 - Make an `id`: `d-YYYYMMDD-<short-slug>` from the send date + a couple of words.
 - Set `status: "available"`, `dateAdded: "<email date, YYYY-MM-DD>"`.
 - **Photos:** the Gmail tools expose attachment *names* but can't download the
   image bytes. So:
-  - Set `photos` to the expected paths: `["images/<id>-1.jpg", ...]` (one per
-    attached image), OR leave `photos: []` if none.
+  - Set `photos` to the expected paths: `["images/<id>-1.jpg", "images/<id>-2.jpg", ...]`
+    one entry per attached image in order, OR leave `photos: []` if none. When there is
+    more than one, the site shows a photo carousel (arrows + dots) automatically.
   - In the run summary, tell Adam exactly which files to drop into `images/`
     and what to name them. Until the files exist, the card shows the clean
     door placeholder — nothing breaks.

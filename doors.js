@@ -13,7 +13,7 @@ window.REDOOR_DATA = {
     shopName: "ReDoor",
     tagline: "Restored garage doors, given a second life.",
     blurb:
-      "Salvaged from old houses and given a full service — cleaned, repaired, and repainted to order. Every door is a one-off. Have a look, then get in touch.",
+      "Salvaged from old houses, then cleaned, serviced and repainted to order — every door is checked over and ready to fit. You wouldn't think twice about a good second-hand car; a properly restored garage door is no different. Have a look, then get in touch.",
     // Fill these in with Dad's real details:
     contactEmail: "adammhannigan@gmail.com",
     contactPhone: "+44 7853 264404",
@@ -69,11 +69,29 @@ window.REDOOR_DATA = {
     note: "Other RAL colours available on request."
   },
 
+  // Environmental impact section.
+  environment: {
+    heading: "Good for the house, better for the planet",
+    stat: "62%",
+    statLabel: "of all UK waste comes from construction and demolition — the country's single biggest waste stream.",
+    body:
+      "Britain throws away around 123 million tonnes of construction and demolition material every year. A garage door that's been stripped, repaired and properly serviced is a door kept out of that pile. You wouldn't scrap a good second-hand car, and a restored door is no different: the same job done, a fraction of the footprint, and none of the factory.",
+    points: [
+      "Every door reused is one less made from raw steel, aluminium or timber.",
+      "Fully serviced and ready to fit — not landfill.",
+      "One-off doors with character you can't buy new."
+    ],
+    source: "UK government waste statistics (DEFRA)",
+    sourceUrl: "https://www.gov.uk/government/statistics/uk-waste-data/uk-statistics-on-waste"
+  },
+
   doors: [
     {
       id: "d-20260707-green-roller",
       title: "Green insulated roller, electric",
       type: "Roller (electric)",
+      category: "Roller",
+      dim: { w: 2400, h: 2100 },
       price: 320,
       priceNote: "",
       condition: "Very good",
@@ -92,6 +110,7 @@ window.REDOOR_DATA = {
       id: "d-20260707-white-sectional",
       title: "White sectional, block-panel",
       type: "Sectional",
+      category: "Sectional",
       price: 400,
       priceNote: "",
       condition: "Fully functional — good",
@@ -110,6 +129,8 @@ window.REDOOR_DATA = {
       id: "d-20260702-timber-oak",
       title: "Timber up-and-over, oak panel",
       type: "Up-and-over",
+      category: "Up and Over",
+      dim: { w: 2134, h: 1980 },
       price: 185,
       priceNote: "ono",
       condition: "Fully serviced — very good",
@@ -128,6 +149,8 @@ window.REDOOR_DATA = {
       id: "d-20260628-steel-white",
       title: "Steel up-and-over, horizontal rib",
       type: "Up-and-over",
+      category: "Up and Over",
+      dim: { w: 2286, h: 2134 },
       price: 120,
       priceNote: "",
       condition: "Serviced — good, light surface wear",
@@ -146,6 +169,8 @@ window.REDOOR_DATA = {
       id: "d-20260615-timber-blue",
       title: "Timber side-hinged pair, coastal blue",
       type: "Side-hinged (double)",
+      category: "Side Hinged",
+      dim: { w: 2134, h: 2134 },
       price: 240,
       priceNote: "",
       condition: "Restored & repainted",
