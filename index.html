@@ -3,8 +3,50 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>ReDoor — Restored garage doors</title>
-<meta name="description" content="Restored garage doors given a second life. Salvaged, serviced, and repainted to order." />
+<title>ReDoor — Restored garage doors in Chester &amp; Cheshire</title>
+<meta name="description" content="Restored garage doors given a second life. Salvaged, serviced and repainted to order by Matthew Hannigan (5.0 from 45 Google reviews). Sectional, roller, up-and-over and side-hinged doors. Chester and Cheshire." />
+<link rel="canonical" href="https://adammhannigan-create.github.io/ReDoorUK/" />
+
+<!-- Social / link preview -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="ReDoor" />
+<meta property="og:title" content="ReDoor — Restored garage doors, given a second life" />
+<meta property="og:description" content="Salvaged, serviced and repainted garage doors. Sectional, roller, up-and-over and side-hinged. Run by Matthew Hannigan — 5.0 from 45 Google reviews. Chester &amp; Cheshire." />
+<meta property="og:url" content="https://adammhannigan-create.github.io/ReDoorUK/" />
+<meta property="og:image" content="https://adammhannigan-create.github.io/ReDoorUK/images/d-20260707-white-sectional-1.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="ReDoor — Restored garage doors" />
+<meta name="twitter:description" content="Salvaged, serviced and repainted garage doors. 5.0 from 45 Google reviews. Chester &amp; Cheshire." />
+<meta name="twitter:image" content="https://adammhannigan-create.github.io/ReDoorUK/images/d-20260707-white-sectional-1.jpg" />
+
+<!-- Structured data: local business + reviews -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HomeAndConstructionBusiness",
+  "name": "ReDoor — Matthew Hannigan Garage Doors",
+  "description": "Restored and reclaimed garage doors, serviced and repainted to order.",
+  "url": "https://adammhannigan-create.github.io/ReDoorUK/",
+  "telephone": "+447853264404",
+  "priceRange": "££",
+  "areaServed": [
+    { "@type": "City", "name": "Chester" },
+    { "@type": "AdministrativeArea", "name": "Cheshire" }
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Chester",
+    "addressRegion": "Cheshire",
+    "addressCountry": "GB"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5.0",
+    "reviewCount": "45",
+    "bestRating": "5"
+  }
+}
+</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -443,32 +485,59 @@
     color: var(--ink-soft);
   }
 
-  .door-foot { margin-top: auto; }
+  .door-foot { margin-top: auto; display: flex; gap: 8px; }
   .ask {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    width: 100%;
+    gap: 7px;
+    flex: 1;
     justify-content: center;
     font-family: var(--font-display);
     font-weight: 500;
-    font-size: 0.92rem;
-    padding: 11px 16px;
+    font-size: 0.9rem;
+    padding: 11px 14px;
     border-radius: 8px;
     text-decoration: none;
     background: var(--accent);
     color: var(--on-accent);
     border: 1px solid var(--accent);
-    transition: background .18s var(--ease), transform .12s var(--ease);
+    transition: background .18s var(--ease), transform .12s var(--ease), border-color .18s var(--ease);
   }
   .ask:hover { background: var(--accent-deep); }
   .ask:active { transform: translateY(1px); }
+  .ask svg { width: 16px; height: 16px; flex: 0 0 auto; }
+  .ask.wa { background: var(--avail); color: var(--avail-ink); border-color: var(--avail); }
+  .ask.wa:hover { background: #1FB457; }
+  .ask.email {
+    background: transparent;
+    color: var(--accent);
+    border-color: var(--line-strong);
+  }
+  .ask.email:hover { background: transparent; border-color: var(--accent); color: var(--accent-deep); }
   .ask.disabled {
     background: transparent;
     color: var(--ink-soft);
     border-color: var(--line-strong);
     pointer-events: none;
   }
+
+  /* floating WhatsApp button */
+  .wa-fab {
+    position: fixed;
+    right: 20px; bottom: 20px;
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: var(--avail);
+    color: #fff;
+    display: grid; place-items: center;
+    box-shadow: 0 8px 24px -6px rgba(0,0,0,0.4);
+    z-index: 90;
+    transition: transform .18s var(--ease), box-shadow .18s var(--ease);
+  }
+  .wa-fab:hover { transform: translateY(-2px) scale(1.04); box-shadow: 0 12px 28px -8px rgba(0,0,0,0.45); }
+  .wa-fab svg { width: 30px; height: 30px; }
+  @media (prefers-reduced-motion: reduce) { .wa-fab { transition: none; } .wa-fab:hover { transform: none; } }
+  @media (max-width: 560px) { .wa-fab { width: 52px; height: 52px; right: 16px; bottom: 16px; } .wa-fab svg { width: 27px; height: 27px; } }
 
   /* empty state */
   .empty {
@@ -824,6 +893,10 @@
   </div>
 </footer>
 
+<a class="wa-fab" id="waFab" href="#" target="_blank" rel="noopener" aria-label="Message us on WhatsApp" hidden>
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.4"/></svg>
+</a>
+
 <script src="doors.js"></script>
 <script>
 (function () {
@@ -862,6 +935,56 @@
       "?subject=" + encodeURIComponent(subj) +
       "&body=" + encodeURIComponent(body);
   }
+
+  // WhatsApp number from the phone (strip non-digits, normalise UK leading 0)
+  var waNumber = (function () {
+    var raw = cfg.whatsapp || cfg.contactPhone || "";
+    var d = String(raw).replace(/[^\d]/g, "");
+    if (d.charAt(0) === "0") d = "44" + d.slice(1);
+    return d;
+  })();
+  function waFor(door) {
+    var msg = door
+      ? "Hi, I'm interested in the " + door.title + " (" + money(door.price) + ") on ReDoor. Is it still available?"
+      : "Hi, I saw ReDoor and I'm interested in a restored garage door.";
+    return "https://wa.me/" + waNumber + "?text=" + encodeURIComponent(msg);
+  }
+  var WA_ICON = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.4"/></svg>';
+
+  // wire the floating WhatsApp button
+  var fab = document.getElementById("waFab");
+  if (fab && waNumber) { fab.href = waFor(null); fab.hidden = false; }
+
+  // Structured data: one Product per door (helps Google understand the stock)
+  try {
+    var canonEl = document.querySelector('link[rel="canonical"]');
+    var base = (canonEl ? canonEl.href : (location.origin + location.pathname)).replace(/\/$/, "");
+    var products = doors.map(function (d) {
+      var imgs = (d.photos || []).filter(function (p) { return /^images\//.test(p); })
+        .map(function (p) { return base + "/" + p; });
+      var prod = {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": d.title,
+        "category": "Garage door",
+        "itemCondition": "https://schema.org/UsedCondition",
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "GBP",
+          "price": (typeof d.price === "number" ? d.price : String(d.price || "")),
+          "availability": d.status === "sold" ? "https://schema.org/SoldOut" : "https://schema.org/InStock",
+          "itemCondition": "https://schema.org/UsedCondition"
+        }
+      };
+      if (d.description) prod.description = d.description;
+      if (imgs.length) prod.image = imgs;
+      return prod;
+    });
+    var sd = document.createElement("script");
+    sd.type = "application/ld+json";
+    sd.textContent = JSON.stringify(products);
+    document.head.appendChild(sd);
+  } catch (e) {}
 
   // ---- Hero + contact ----
   document.getElementById("heroLede").textContent =
@@ -1102,9 +1225,15 @@
     var chips = (d.colourOptions || []).map(function (c) {
       return '<span class="chip">' + esc(c) + "</span>";
     }).join("");
-    var cta = d.status === "sold"
-      ? '<span class="ask disabled">Sold</span>'
-      : '<a class="ask" href="' + mailtoFor(d) + '">Ask about this door &rarr;</a>';
+    var cta;
+    if (d.status === "sold") {
+      cta = '<span class="ask disabled">Sold</span>';
+    } else if (waNumber) {
+      cta = '<a class="ask wa" href="' + waFor(d) + '" target="_blank" rel="noopener">' + WA_ICON + " WhatsApp</a>" +
+            '<a class="ask email" href="' + mailtoFor(d) + '" aria-label="Email about ' + esc(d.title) + '">Email</a>';
+    } else {
+      cta = '<a class="ask" href="' + mailtoFor(d) + '">Ask about this door &rarr;</a>';
+    }
 
     return (
       '<article class="door ' + (d.status === "sold" ? "sold" : "") + '">' +
