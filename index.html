@@ -677,6 +677,49 @@
     .rep-badge .stars { margin: 4px 0; }
   }
 
+  /* ---------- eBay feedback block ---------- */
+  .ebay-block {
+    margin-top: 40px;
+    padding-top: 34px;
+    border-top: 1px solid var(--line);
+  }
+  .ebay-head {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px 20px;
+    margin-bottom: 6px;
+  }
+  .ebay-logo { height: 26px; width: auto; flex: 0 0 auto; }
+  .ebay-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 10px;
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    color: var(--ink-soft);
+    align-items: center;
+  }
+  .ebay-stats .pos {
+    color: #0E7A2E;
+    font-weight: 700;
+    background: #E7F5EB;
+    padding: 3px 9px;
+    border-radius: 999px;
+  }
+  .ebay-stats b { color: var(--ink); font-weight: 700; }
+  .ebay-intro { color: var(--ink-soft); margin: 12px 0 20px; max-width: 62ch; text-wrap: pretty; }
+  .ebay-more { margin-top: 18px; }
+  .ebay-more a {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--accent-deep);
+    text-decoration: none;
+    border-bottom: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+    padding-bottom: 1px;
+  }
+  .ebay-more a:hover { border-bottom-color: var(--accent); }
+
   /* ---------- Environmental section ---------- */
   .eco { padding: clamp(48px, 6vw, 80px) 0; background: #E7F5EB; }
   .eco-inner {
@@ -1299,6 +1342,40 @@
       "</div>" +
       '<div class="quote-grid">' + quoteCards + "</div>" +
       moreLink;
+
+    // eBay feedback block
+    var eb = rep.ebay;
+    if (eb && eb.quotes && eb.quotes.length) {
+      var EBAY_LOGO =
+        '<svg class="ebay-logo" viewBox="0 0 92 37" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="eBay">' +
+        '<text x="0" y="29" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700" font-style="italic">' +
+        '<tspan fill="#E53238">e</tspan><tspan fill="#0064D2">b</tspan><tspan fill="#F5AF02">a</tspan><tspan fill="#86B817">y</tspan>' +
+        "</text></svg>";
+      var ebCards = eb.quotes.map(function (q) {
+        return (
+          '<figure class="review-card">' +
+            '<div class="rc-stars">★★★★★</div>' +
+            "<blockquote>&ldquo;" + esc(q.text) + "&rdquo;</blockquote>" +
+            '<figcaption class="rc-name">' + esc(q.name) + " &middot; verified eBay buyer</figcaption>" +
+          "</figure>"
+        );
+      }).join("");
+      var ebStats = [];
+      if (eb.positive) ebStats.push('<span class="pos">' + esc(eb.positive) + " positive</span>");
+      if (eb.feedbackScore) ebStats.push("<span><b>" + esc(eb.feedbackScore) + "</b> feedback</span>");
+      if (eb.itemsSold) ebStats.push("<span><b>" + esc(eb.itemsSold) + "</b> items sold</span>");
+      if (eb.memberSince) ebStats.push("<span>Seller since " + esc(eb.memberSince) + "</span>");
+      document.getElementById("reviews").innerHTML +=
+        '<div class="ebay-block">' +
+          '<div class="ebay-head">' + EBAY_LOGO +
+            '<div class="ebay-stats">' + ebStats.join("") + "</div>" +
+          "</div>" +
+          (eb.intro ? '<p class="ebay-intro">' + esc(eb.intro) + "</p>" : "") +
+          '<div class="quote-grid">' + ebCards + "</div>" +
+          (eb.url ? '<div class="ebay-more"><a href="' + esc(eb.url) + '" target="_blank" rel="noopener">See all feedback on eBay &rarr;</a></div>' : "") +
+        "</div>";
+    }
+
     document.getElementById("reviews").hidden = false;
   }
 

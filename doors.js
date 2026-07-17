@@ -52,7 +52,24 @@ window.REDOOR_DATA = {
         name: "Daz Davies",
         text: "Really good service and brilliant result. Especially grateful for all the advice on style and colour matching. Definitely recommend Matthew to others."
       }
-    ]
+    ],
+    // eBay seller feedback (hannigan71) — parts, spares and hardware.
+    ebay: {
+      handle: "hannigan71",
+      url: "https://www.ebay.co.uk/usr/hannigan71",
+      positive: "100%",
+      feedbackScore: 813,
+      itemsSold: 946,
+      memberSince: 2006,
+      intro:
+        "Matthew also sells garage-door parts, motors and hardware on eBay as hannigan71 — 100% positive feedback over nearly 20 years, with the same careful packing and honest descriptions.",
+      quotes: [
+        { name: "t***t", text: "Can't fault this item, as described. Communication with the seller and packaging first class, plus postage arrived a day before promised. Thank you." },
+        { name: "o***p", text: "Exactly as described, generously wrapped and sealed in a good sized box. Price and postage were very fair — very happy with every aspect of this transaction." },
+        { name: "a***h", text: "Item exactly as described and seller was very helpful with resolving an address issue. Thank you very much." },
+        { name: "7***w", text: "Great value and very well packaged, and arrived very quickly." }
+      ]
+    }
   },
 
   // "Paint any door" service — edit prices or colours here.
