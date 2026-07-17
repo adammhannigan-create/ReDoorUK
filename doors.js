@@ -47,10 +47,6 @@ window.REDOOR_DATA = {
       {
         name: "David Rooke",
         text: "Rang Matthew this afternoon for help with the door sticking, he was here within the hour, repaired it and gave advice to avoid a repeat. Great service, great price."
-      },
-      {
-        name: "Daz Davies",
-        text: "Really good service and brilliant result. Especially grateful for all the advice on style and colour matching. Definitely recommend Matthew to others."
       }
     ],
     // eBay seller feedback (hannigan71) — parts, spares and hardware.
