@@ -767,15 +767,21 @@
   .gd-split {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: clamp(28px, 4vw, 52px);
+    gap: clamp(24px, 3vw, 40px);
     padding: clamp(44px, 6vw, 74px) 0;
     border-top: 1px solid var(--line);
-    align-items: start;
+    align-items: stretch;
   }
   .gd-split .grading,
-  .gd-split .delivery { padding: 0; border-top: none; }
+  .gd-split .delivery {
+    padding: clamp(24px, 3vw, 34px);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+  }
+  .gd-split .grading { background: var(--surface); }
+  .gd-split .delivery { background: color-mix(in srgb, var(--accent) 5%, #ffffff); }
   @media (max-width: 820px) {
-    .gd-split { grid-template-columns: 1fr; gap: 44px; }
+    .gd-split { grid-template-columns: 1fr; gap: 24px; }
   }
 
   /* ---------- Grading section ---------- */
@@ -797,11 +803,11 @@
     grid-template-columns: 54px 130px 1fr;
     gap: 18px;
     align-items: center;
-    padding: 14px 18px;
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    background: var(--surface);
+    padding: 14px 4px;
+    border-top: 1px solid var(--line);
+    background: transparent;
   }
+  .grade-row:first-child { border-top: none; padding-top: 0; }
   .grade-dot {
     width: 46px; height: 46px;
     border-radius: 50%;
@@ -873,10 +879,10 @@
     grid-template-columns: 92px 1fr;
     gap: 16px;
     align-items: center;
-    padding: 12px 16px;
-    border: 1px solid var(--line);
+    padding: 10px 14px;
     border-radius: 10px;
     background: var(--surface);
+    border: 1px solid var(--line);
   }
   .del-band .price {
     font-family: var(--font-mono);
