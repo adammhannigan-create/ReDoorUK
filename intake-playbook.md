@@ -37,7 +37,11 @@ Search Gmail, skipping anything already handled (label `ReDoor/Done`, id `Label_
   - Write a short, warm 1–2 sentence `description` in ReDoor's voice (plain,
     human, no salesy filler). Rewrite Dad's notes cleanly; don't invent facts.
 - `category`: MUST be exactly one of `"Sectional"`, `"Roller"`, `"Up and Over"`,
-  `"Side Hinged"`. The site's type-filter buttons rely on this. Infer from the type.
+  `"Side Hinged"`, `"Motors"`. The site's type-filter buttons rely on this. Infer
+  from the type — use `"Motors"` for serviced/spare motors, openers or remotes
+  sold on their own (not attached to a door). Motor listings use the same
+  fields as doors (title, price, condition, description, photos); just leave
+  `dim`/size fields out if there's no relevant measurement.
 - `dim`: dimensions in **millimetres** as `{ w: <width>, h: <height> }` (add `d`
   for depth only if given). Convert whatever units Dad uses (ft / in / cm) into mm —
   the site converts mm to CM/INCH/FT for the visitor, so always store mm. Omit if no

@@ -286,25 +286,40 @@
   .controls-right { display: flex; gap: 12px; align-items: center; margin-left: auto; }
   .unit-switch {
     display: inline-flex;
-    border: 1px solid var(--line-strong);
+    border: 2px solid #1A1A1A;
     border-radius: 999px;
     overflow: hidden;
+    background: #F5C518;
+    box-shadow: inset 0 -3px 0 rgba(0,0,0,0.12);
   }
   .unit-switch button {
     font-family: var(--font-mono);
+    font-weight: 700;
     font-size: 0.7rem;
-    letter-spacing: 0.02em;
-    padding: 6px 11px;
+    letter-spacing: 0.03em;
+    padding: 6px 12px 10px;
     background: transparent;
     border: none;
-    border-right: 1px solid var(--line);
-    color: var(--ink-soft);
+    border-right: 1px solid rgba(26,26,26,0.35);
+    color: #1A1A1A;
     cursor: pointer;
+    position: relative;
     transition: background .16s var(--ease), color .16s var(--ease);
   }
   .unit-switch button:last-child { border-right: none; }
-  .unit-switch button:hover { color: var(--ink); }
-  .unit-switch button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+  .unit-switch button::after {
+    content: "";
+    position: absolute;
+    left: 2px; right: 2px; bottom: 3px;
+    height: 4px;
+    background-image: repeating-linear-gradient(90deg, #1A1A1A 0 1.5px, transparent 1.5px 6px);
+    pointer-events: none;
+  }
+  .unit-switch button:hover { background: rgba(26,26,26,0.08); }
+  .unit-switch button[aria-pressed="true"] { background: #1A1A1A; color: #F5C518; }
+  .unit-switch button[aria-pressed="true"]::after {
+    background-image: repeating-linear-gradient(90deg, #F5C518 0 1.5px, transparent 1.5px 6px);
+  }
   .status-select { position: relative; }
   .status-select select {
     font-family: var(--font-mono);
@@ -849,6 +864,7 @@
         <button class="filter" data-type="Roller" aria-pressed="false">Roller</button>
         <button class="filter" data-type="Up and Over" aria-pressed="false">Up &amp; Over</button>
         <button class="filter" data-type="Side Hinged" aria-pressed="false">Side Hinged</button>
+        <button class="filter" data-type="Motors" aria-pressed="false">Motors</button>
       </div>
       <div class="controls-right">
         <div class="unit-switch" id="unitSwitch" role="group" aria-label="Measurement units">
@@ -1272,7 +1288,7 @@
   function render() {
     var list = doors.filter(function (d) { return passesType(d) && passesStatus(d); }).sort(orderCmp);
     if (!list.length) {
-      grid.innerHTML = '<div class="empty">No doors of that type to show right now. Try another filter, or check back soon.</div>';
+      grid.innerHTML = '<div class="empty">Nothing of that type to show right now. Try another filter, or check back soon.</div>';
       return;
     }
     grid.innerHTML = list.map(cardHTML).join("");
