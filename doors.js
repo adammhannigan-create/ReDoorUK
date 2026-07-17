@@ -111,11 +111,11 @@ window.REDOOR_DATA = {
     note: "For small or low-value items that aren't needed urgently, we can often offer a reduced rate. Just ask.",
     bands: [
       { price: "FREE", colour: "#2E7D46", areas: "Chester, Cheshire, Ellesmere Port, Wrexham" },
-      { price: "£40", colour: "#EAE3B8", areas: "Merseyside, Flintshire, Wirral, Warrington" },
-      { price: "£65", colour: "#D8CFC4", areas: "Greater Manchester, Staffordshire, Shropshire, North Wales" },
-      { price: "£95", colour: "#CDE29A", areas: "Lancashire, West Midlands, Derbyshire, Mid Wales" },
-      { price: "£125", colour: "#A7D8E4", areas: "Yorkshire, Cumbria, Lincolnshire, Bristol area" },
-      { price: "£150", colour: "#B8B6E6", areas: "South West, South East, East Anglia, Southern Scotland" },
+      { price: "£50", colour: "#EAE3B8", areas: "Merseyside, Flintshire, Wirral, Warrington" },
+      { price: "£80", colour: "#D8CFC4", areas: "Greater Manchester, Staffordshire, Shropshire, North Wales" },
+      { price: "£120", colour: "#CDE29A", areas: "Lancashire, West Midlands, Derbyshire, Mid Wales" },
+      { price: "£155", colour: "#A7D8E4", areas: "Yorkshire, Cumbria, Lincolnshire, Bristol area" },
+      { price: "£190", colour: "#B8B6E6", areas: "South West, South East, East Anglia, Southern Scotland" },
       { price: "On request", colour: "#D8A98E", areas: "Highlands, far South West, Cornwall, Northern Ireland" }
     ]
   },
