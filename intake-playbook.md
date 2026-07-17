@@ -33,6 +33,9 @@ Search Gmail, skipping anything already handled (label `ReDoor/Done`, id `Label_
 - `get_thread` with FULL_CONTENT to read the body and see attachment filenames.
 - Read the details out of the plain-English body and map them to these fields:
   `title, type, price, priceNote, condition, age, colourOptions[], description`.
+  - `grade`: if Dad states a grade, set it to exactly one of `"A+"`, `"A"`,
+    `"B"`, `"C"`, `"D"`. This drives the coloured badge on the listing and maps
+    to the grading section. Omit if he doesn't give one — don't guess a grade.
   - Fill in sensibly. If a field isn't mentioned, leave it out rather than guess.
   - Write a short, warm 1–2 sentence `description` in ReDoor's voice (plain,
     human, no salesy filler). Rewrite Dad's notes cleanly; don't invent facts.

@@ -85,6 +85,41 @@ window.REDOOR_DATA = {
     sourceUrl: "https://www.gov.uk/government/statistics/uk-waste-data/uk-statistics-on-waste"
   },
 
+  // Grading — the colour-coded badge in the corner of each listing.
+  // Dad sets each door's `grade` to one of: "A+", "A", "B", "C", "D".
+  grading: {
+    heading: "How we grade every door",
+    blurb:
+      "Every door is graded once it's been stripped, repaired, serviced and (if needed) repainted. The grade is an honest summary of condition and finish, so you know exactly what you're getting before you buy.",
+    scale: [
+      { grade: "A+", label: "As-new", desc: "Repainted and serviced. Looks and works like a brand-new door — no marks worth mentioning." },
+      { grade: "A", label: "Excellent", desc: "Fully serviced, very clean finish. Only the faintest signs of previous life if you look closely." },
+      { grade: "B", label: "Very good", desc: "Solid, serviced and reliable. Minor cosmetic marks that don't affect how it works." },
+      { grade: "C", label: "Good", desc: "Honest working door with some visible wear. Ideal if looks matter less than value." },
+      { grade: "D", label: "Functional", desc: "Does the job and is safe to fit, but shows its age. Priced to match — great for workshops and outbuildings." }
+    ]
+  },
+
+  // Delivery — powers the pricing map. Origin is Chester.
+  // Edit the price for each band, and move counties between bands, as you like.
+  delivery: {
+    heading: "Delivery across the UK",
+    origin: "Chester",
+    blurb:
+      "We deliver nationwide from Chester. Prices are a guide based on distance — get in touch for an exact quote. Collection is always free.",
+    freeLabel: "FREE around Chester & Cheshire",
+    note: "For small or low-value items that aren't needed urgently, we can often offer a reduced rate. Just ask.",
+    bands: [
+      { price: "FREE", colour: "#2E7D46", areas: "Chester, Cheshire, Ellesmere Port, Wrexham" },
+      { price: "£40", colour: "#EAE3B8", areas: "Merseyside, Flintshire, Wirral, Warrington" },
+      { price: "£65", colour: "#D8CFC4", areas: "Greater Manchester, Staffordshire, Shropshire, North Wales" },
+      { price: "£95", colour: "#CDE29A", areas: "Lancashire, West Midlands, Derbyshire, Mid Wales" },
+      { price: "£125", colour: "#A7D8E4", areas: "Yorkshire, Cumbria, Lincolnshire, Bristol area" },
+      { price: "£150", colour: "#B8B6E6", areas: "South West, South East, East Anglia, Southern Scotland" },
+      { price: "On request", colour: "#D8A98E", areas: "Highlands, far South West, Cornwall, Northern Ireland" }
+    ]
+  },
+
   doors: [
     {
       id: "d-20260707-green-roller",
@@ -94,6 +129,7 @@ window.REDOOR_DATA = {
       dim: { w: 2400, h: 2100 },
       price: 320,
       priceNote: "",
+      grade: "A+",
       condition: "Very good",
       age: "≈5 years",
       size: "2400 × 2100 mm (2.4m × 2.1m)",
@@ -113,6 +149,7 @@ window.REDOOR_DATA = {
       category: "Sectional",
       price: 400,
       priceNote: "",
+      grade: "A",
       condition: "Fully functional — good",
       age: "≈15 years",
       size: "",

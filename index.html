@@ -422,6 +422,29 @@
   .car-dots button[aria-current="true"] { background: var(--surface); }
   @media (hover: none) { .car-btn { opacity: 1; } }
 
+  /* grade badge — colour-coded circle in the corner of each listing */
+  .grade-badge {
+    position: absolute;
+    top: 12px; right: 12px;
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    display: grid; place-items: center;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.98rem;
+    letter-spacing: -0.02em;
+    color: #0E1A0E;
+    border: 2px solid rgba(255,255,255,0.9);
+    box-shadow: 0 2px 8px -2px rgba(0,0,0,0.35);
+    z-index: 3;
+  }
+  .grade-badge.g-aplus { background: #2FBF3F; }
+  .grade-badge.g-a { background: #7FD65B; }
+  .grade-badge.g-b { background: #C8DE4E; }
+  .grade-badge.g-c { background: #F2CE2E; }
+  .grade-badge.g-d { background: #F0912E; color: #2A1400; }
+  .grade-badge .plus { font-size: 0.7em; }
+
   .stamp {
     position: absolute;
     top: 14px; left: 14px;
@@ -723,6 +746,120 @@
     .eco-stat { max-width: 320px; }
   }
 
+  /* ---------- Grading section ---------- */
+  .grading { padding: clamp(44px, 6vw, 74px) 0; border-top: 1px solid var(--line); }
+  .grading-head { max-width: 62ch; margin: 0 0 28px; }
+  .grading-head h2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.6rem, 3vw, 2.3rem);
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+    margin: 0 0 12px;
+    text-wrap: balance;
+  }
+  .grading-head p { margin: 0; color: var(--ink-soft); text-wrap: pretty; }
+  .grade-scale { display: grid; gap: 12px; }
+  .grade-row {
+    display: grid;
+    grid-template-columns: 54px 130px 1fr;
+    gap: 18px;
+    align-items: center;
+    padding: 14px 18px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--surface);
+  }
+  .grade-dot {
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    display: grid; place-items: center;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.02rem;
+    color: #0E1A0E;
+    box-shadow: inset 0 -2px 0 rgba(0,0,0,0.1);
+  }
+  .grade-dot .plus { font-size: 0.7em; }
+  .grade-dot.g-aplus { background: #2FBF3F; }
+  .grade-dot.g-a { background: #7FD65B; }
+  .grade-dot.g-b { background: #C8DE4E; }
+  .grade-dot.g-c { background: #F2CE2E; }
+  .grade-dot.g-d { background: #F0912E; color: #2A1400; }
+  .grade-row .g-label { font-family: var(--font-display); font-weight: 500; font-size: 1.02rem; }
+  .grade-row .g-desc { color: var(--ink-soft); font-size: 0.92rem; text-wrap: pretty; }
+  @media (max-width: 620px) {
+    .grade-row { grid-template-columns: 44px 1fr; gap: 12px 14px; padding: 14px; }
+    .grade-row .g-label { grid-column: 2; }
+    .grade-row .g-desc { grid-column: 1 / -1; }
+    .grade-dot { width: 40px; height: 40px; font-size: 0.92rem; }
+  }
+
+  /* ---------- Delivery section ---------- */
+  .delivery { padding: clamp(44px, 6vw, 74px) 0; border-top: 1px solid var(--line); }
+  .delivery-grid {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: clamp(28px, 5vw, 56px);
+    align-items: start;
+  }
+  .delivery-copy h2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.6rem, 3vw, 2.3rem);
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+    margin: 0 0 12px;
+    text-wrap: balance;
+  }
+  .delivery-copy p { margin: 0 0 16px; color: var(--ink-soft); max-width: 52ch; text-wrap: pretty; }
+  .delivery-copy .free-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 0.8rem;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: var(--avail);
+    color: var(--avail-ink);
+    margin-bottom: 16px;
+  }
+  .delivery-copy .del-note {
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    color: var(--ink-soft);
+    border-left: 3px solid var(--avail);
+    padding-left: 12px;
+    line-height: 1.5;
+    max-width: 46ch;
+  }
+  .del-bands { display: grid; gap: 8px; }
+  .del-band {
+    display: grid;
+    grid-template-columns: 92px 1fr;
+    gap: 16px;
+    align-items: center;
+    padding: 12px 16px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--surface);
+  }
+  .del-band .price {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 0.92rem;
+    padding: 6px 4px;
+    text-align: center;
+    border-radius: 6px;
+    color: #241E12;
+  }
+  .del-band .areas { font-size: 0.9rem; color: var(--ink-soft); line-height: 1.4; text-wrap: pretty; }
+  @media (max-width: 780px) {
+    .delivery-grid { grid-template-columns: 1fr; gap: 26px; }
+  }
+
   /* ---------- Paint service band ---------- */
   .paint {
     background: var(--accent);
@@ -834,6 +971,8 @@
     <a class="brand" href="#top"><span class="re">Re</span>Door</a>
     <nav class="site-nav" aria-label="Sections">
       <a href="#stock">Stock</a>
+      <a href="#grading">Grades</a>
+      <a href="#delivery">Delivery</a>
       <a href="#paint">Painting</a>
       <a href="#reviews">Reviews</a>
     </nav>
@@ -888,6 +1027,10 @@
     <div class="grid" id="grid"></div>
   </div>
 
+  <section class="grading wrap" id="grading" hidden></section>
+
+  <section class="delivery wrap" id="delivery" hidden></section>
+
   <section class="paint" id="paint" hidden>
     <div class="wrap paint-inner" id="paintInner"></div>
   </section>
@@ -927,6 +1070,16 @@
     '<line x1="8" y1="40" x2="92" y2="40" stroke="#9BA3AD" stroke-width="2"/>' +
     '<line x1="8" y1="57" x2="92" y2="57" stroke="#9BA3AD" stroke-width="2"/>' +
     '</svg>';
+
+  function gradeClass(g) {
+    var map = { "A+": "g-aplus", "A": "g-a", "B": "g-b", "C": "g-c", "D": "g-d" };
+    return map[String(g || "").toUpperCase()] || "";
+  }
+  function gradeMarkup(g) {
+    g = String(g || "").toUpperCase();
+    if (g === "A+") return 'A<span class="plus">+</span>';
+    return g;
+  }
 
   function esc(s) {
     return String(s == null ? "" : s)
@@ -1160,6 +1313,51 @@
     document.getElementById("eco").hidden = false;
   }
 
+  // ---- Grading section ----
+  var gr = D.grading;
+  if (gr && gr.scale && gr.scale.length) {
+    var rows = gr.scale.map(function (s) {
+      return (
+        '<div class="grade-row">' +
+          '<div class="grade-dot ' + gradeClass(s.grade) + '">' + gradeMarkup(s.grade) + "</div>" +
+          '<div class="g-label">' + esc(s.label) + "</div>" +
+          '<div class="g-desc">' + esc(s.desc) + "</div>" +
+        "</div>"
+      );
+    }).join("");
+    document.getElementById("grading").innerHTML =
+      '<div class="grading-head">' +
+        "<h2>" + esc(gr.heading || "How we grade") + "</h2>" +
+        (gr.blurb ? "<p>" + esc(gr.blurb) + "</p>" : "") +
+      "</div>" +
+      '<div class="grade-scale">' + rows + "</div>";
+    document.getElementById("grading").hidden = false;
+  }
+
+  // ---- Delivery section ----
+  var dl = D.delivery;
+  if (dl && dl.bands && dl.bands.length) {
+    var bands = dl.bands.map(function (b) {
+      return (
+        '<div class="del-band">' +
+          '<div class="price" style="background:' + esc(b.colour) + '">' + esc(b.price) + "</div>" +
+          '<div class="areas">' + esc(b.areas) + "</div>" +
+        "</div>"
+      );
+    }).join("");
+    document.getElementById("delivery").innerHTML =
+      '<div class="delivery-grid">' +
+        '<div class="delivery-copy">' +
+          "<h2>" + esc(dl.heading || "Delivery") + "</h2>" +
+          (dl.freeLabel ? '<div class="free-pill">' + esc(dl.freeLabel) + "</div>" : "") +
+          (dl.blurb ? "<p>" + esc(dl.blurb) + "</p>" : "") +
+          (dl.note ? '<p class="del-note">' + esc(dl.note) + "</p>" : "") +
+        "</div>" +
+        '<div class="del-bands">' + bands + "</div>" +
+      "</div>";
+    document.getElementById("delivery").hidden = false;
+  }
+
   // ---- measurement units ----
   var currentUnit = "mm";
   function round1(n) { return (Math.round(n * 10) / 10).toString(); }
@@ -1238,6 +1436,9 @@
     var stamp = d.status === "sold"
       ? '<div class="stamp sold">SOLD</div>'
       : (d.dateAdded ? '<div class="stamp">NEW IN</div>' : "");
+    var badge = (d.grade && gradeClass(d.grade))
+      ? '<div class="grade-badge ' + gradeClass(d.grade) + '" title="Grade ' + esc(d.grade) + '" aria-label="Grade ' + esc(d.grade) + '">' + gradeMarkup(d.grade) + "</div>"
+      : "";
     var chips = (d.colourOptions || []).map(function (c) {
       return '<span class="chip">' + esc(c) + "</span>";
     }).join("");
@@ -1253,7 +1454,7 @@
 
     return (
       '<article class="door ' + (d.status === "sold" ? "sold" : "") + '">' +
-        '<div class="photo">' + photoBlock(d) + stamp + "</div>" +
+        '<div class="photo">' + photoBlock(d) + stamp + badge + "</div>" +
         '<div class="door-body">' +
           '<div class="door-head">' +
             '<h2 class="door-title">' + esc(d.title) + "</h2>" +
