@@ -18,7 +18,7 @@ window.REDOOR_DATA = {
     contactEmail: "adammhannigan@gmail.com",
     contactPhone: "+44 7853 264404",
     area: "Collection / local delivery",
-    lastUpdated: "2026-07-07"
+    lastUpdated: "2026-07-17"
   },
 
   // Reputation / Google reviews trust section.
@@ -121,6 +121,25 @@ window.REDOOR_DATA = {
   },
 
   doors: [
+    {
+      id: "d-20260717-promatic-motor",
+      title: "Hörmann Promatic Series 4 operator (ex-display)",
+      type: "Garage door motor",
+      category: "Motors",
+      price: null,
+      priceNote: "POA",
+      grade: "A+",
+      condition: "Ex-display, as new",
+      age: "Current model",
+      sizeAdjustable: false,
+      sizeNote: "",
+      colourOptions: [],
+      description:
+        "Ex-display Hörmann Promatic Series 4 garage door operator, made in Germany and top quality. Supplied with two brand-new BiSecure remote fobs and a full 12-month warranty. Extra fobs and accessories available on request, with full back-up and support if needed.",
+      photos: ["images/d-20260717-promatic-motor-1.jpg"],
+      status: "available",
+      dateAdded: "2026-07-17"
+    },
     {
       id: "d-20260707-green-roller",
       title: "Green insulated roller, electric",
