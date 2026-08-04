@@ -18,7 +18,13 @@ window.REDOOR_DATA = {
     contactEmail: "adammhannigan@gmail.com",
     contactPhone: "+44 7853 264404",
     area: "Collection / local delivery",
-    lastUpdated: "2026-07-17"
+    lastUpdated: "2026-08-04",
+    // Hero background. Point heroVideo at a looping mp4 in images/, and
+    // heroPoster at a still frame (shown while the video loads / on mobile).
+    // Leave heroVideo empty to fall back to heroImage, or to the gradient.
+    heroVideo: "",
+    heroPoster: "images/hero.jpg",
+    heroImage: "images/hero.jpg"
   },
 
   // Reputation / Google reviews trust section.
@@ -134,6 +140,27 @@ window.REDOOR_DATA = {
   },
 
   doors: [
+    {
+      id: "d-20260803-side-hinged",
+      title: "Novoferm side hinged pair",
+      type: "Side hinged",
+      category: "Side Hinged",
+      dim: { w: 2235, h: 2184 },
+      price: 599,
+      priceNote: "",
+      grade: "A",
+      condition: "Fully functional, perfect working order",
+      age: "2020",
+      size: "2235 \u00d7 2184 mm (88\" \u00d7 86\")",
+      sizeAdjustable: false,
+      sizeNote: "Not adjustable",
+      colourOptions: ["Respray to any RAL \u2014 see below"],
+      description:
+        "Novoferm side hinged doors from 2020, in perfect working order with the locking running nice and smooth. Grade A condition, no fobs needed with this one.",
+      photos: ["images/d-20260803-side-hinged-1.jpg"],
+      status: "available",
+      dateAdded: "2026-08-03"
+    },
     {
       id: "d-20260717-promatic-motor",
       title: "Hörmann Promatic Series 4 operator (ex-display)",
