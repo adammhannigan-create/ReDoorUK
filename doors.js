@@ -151,7 +151,7 @@ window.REDOOR_DATA = {
       colourOptions: ["RAL 7030 — Stone Grey"],
       description:
         "A Hörmann T-ribbed sectional door in RAL 7030, built for low headroom garages. New old stock that's never been fitted — the panels look as good as new, and every part has been fully reserviced and repacked.",
-      photos: [],
+      photos: ["images/d-20260820-hormann-sectional-1.jpg"],
       status: "available",
       dateAdded: "2026-08-20"
     },
