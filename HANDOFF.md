@@ -12,6 +12,7 @@ This sandbox can't push to GitHub itself. After any edit to `index.html` or `doo
 5. Hard refresh the live site to see it (normal refresh can show a stale cached version).
 
 ## What's built
+- Hero: an illustrated 5-stage restoration sequence (Rescued → Assessed → Stripped & cleaned → Serviced & re-packed → Ready to fit) that auto-advances every 4s and loops. It is a light hero on the normal page background — the old dark-blue gradient and the `heroVideo`/`heroPoster`/`heroImage` config keys are gone. The door is an inline SVG in `index.html` (search `door-art`); stage copy is the `.hero-stage` blocks just below it. Edit either by hand in `index.html`. It pauses on hover/focus, when the tab is hidden, and once scrolled out of view; with reduced-motion on it holds the finished door and doesn't animate.
 - Single static site: `index.html` (all markup/CSS/JS) + `doors.js` (all door listings, shop config, paint service, reviews, environment section). No backend.
 - Email-to-website pipeline: scheduled task `redoor-stock-intake` runs 8am/1pm/6pm, reads Gmail for subject `NEW DOOR` / `SOLD`, rewrites `doors.js`, labels handled emails `ReDoor/Done`. Full process documented in `intake-playbook.md`.
 - Photo limitation (permanent, not a bug): Gmail tools can see attachment names but not download the bytes. So the task writes expected filenames like `images/<door-id>-1.jpg` into `doors.js`, and tells you exactly what to save into the `images/` folder. Until the file exists, the card just shows a placeholder.
@@ -23,6 +24,8 @@ This sandbox can't push to GitHub itself. After any edit to `index.html` or `doo
 - Just added, not yet confirmed live: floating WhatsApp button + per-door WhatsApp/Email buttons (uses +44 7853 264404 — confirm this number is actually on WhatsApp), and SEO tags (Open Graph, Twitter Card, LocalBusiness + Product structured data for search/share previews).
 
 ## Known gaps / ideas not yet done
+- `images/images:d-20260803-side-hinged-1.jpg` is misnamed — the `images:` prefix got baked into the filename, so that door's photo 404s and shows a placeholder. Renaming it to `d-20260803-side-hinged-1.jpg` fixes it.
+- `images/d-20260717-promatic-motor-1.jpg` is referenced in `doors.js` but was never saved into `images/`.
 - Some early door photos are embedded as base64 directly in `doors.js` instead of real image files — bloats the file, works fine, but should be swapped to real files in `images/` eventually.
 - Custom domain `redoor.co.uk`: you need to buy it yourself (a registrar purchase, not something Claude can do). Once bought:
   - Apex A records → `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`

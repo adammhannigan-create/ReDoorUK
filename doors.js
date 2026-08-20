@@ -18,13 +18,9 @@ window.REDOOR_DATA = {
     contactEmail: "adammhannigan@gmail.com",
     contactPhone: "+44 7853 264404",
     area: "Collection / local delivery",
-    lastUpdated: "2026-08-04",
-    // Hero background. Point heroVideo at a looping mp4 in images/, and
-    // heroPoster at a still frame (shown while the video loads / on mobile).
-    // Leave heroVideo empty to fall back to heroImage, or to the gradient.
-    heroVideo: "",
-    heroPoster: "images/hero.jpg",
-    heroImage: "images/hero.jpg"
+    lastUpdated: "2026-08-04"
+    // The hero is now an illustrated 5-stage restoration sequence drawn in
+    // index.html — there is no hero image or video to configure here.
   },
 
   // Reputation / Google reviews trust section.

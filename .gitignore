@@ -2,10 +2,4 @@ node_modules/
 package-lock.json
 package.json
 .DS_Store
-doors.js
-index.html
-index.html
-index.html
-index.html
-doors.js
-index.html
+.claude/
