@@ -18,7 +18,7 @@ window.REDOOR_DATA = {
     contactEmail: "adammhannigan@gmail.com",
     contactPhone: "+44 7853 264404",
     area: "Collection / local delivery",
-    lastUpdated: "2026-08-04"
+    lastUpdated: "2026-08-20"
     // The hero is now an illustrated 5-stage restoration sequence drawn in
     // index.html — there is no hero image or video to configure here.
   },
@@ -136,6 +136,25 @@ window.REDOOR_DATA = {
   },
 
   doors: [
+    {
+      id: "d-20260820-hormann-sectional",
+      title: "Hörmann T-ribbed sectional, low headroom",
+      type: "Sectional (low headroom)",
+      category: "Sectional",
+      price: 1350,
+      priceNote: "",
+      grade: "A",
+      condition: "New old stock, never fitted — dirty springs but no wear on the panels, looks new",
+      age: "New old stock",
+      sizeAdjustable: false,
+      sizeNote: "",
+      colourOptions: ["RAL 7030 — Stone Grey"],
+      description:
+        "A Hörmann T-ribbed sectional door in RAL 7030, built for low headroom garages. New old stock that's never been fitted — the panels look as good as new, and every part has been fully reserviced and repacked.",
+      photos: [],
+      status: "available",
+      dateAdded: "2026-08-20"
+    },
     {
       id: "d-20260803-side-hinged",
       title: "Novoferm side hinged pair",

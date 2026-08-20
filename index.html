@@ -407,8 +407,11 @@
   .door-art #stamp path { stroke: var(--avail); stroke-width: 2.6; fill: none; }
 
   /* ---------- Controls ---------- */
+  .stock-section { position: relative; }
   .controls {
-    position: static;
+    position: sticky;
+    top: var(--header-h, 64px);
+    z-index: 95;
     background: var(--bg);
     padding: 14px 0;
     border-bottom: 1px solid var(--line);
@@ -1443,38 +1446,40 @@
     </div>
   </section>
 
-  <div class="controls">
-    <div class="wrap controls-inner">
-      <div class="type-filters" id="typeFilters" role="group" aria-label="Filter by door type">
-        <button class="filter" data-type="all" aria-pressed="true">All</button>
-        <button class="filter" data-type="Sectional" aria-pressed="false">Sectional</button>
-        <button class="filter" data-type="Roller" aria-pressed="false">Roller</button>
-        <button class="filter" data-type="Up and Over" aria-pressed="false">Up &amp; Over</button>
-        <button class="filter" data-type="Side Hinged" aria-pressed="false">Side Hinged</button>
-        <button class="filter" data-type="Motors" aria-pressed="false">Motors</button>
-      </div>
-      <div class="controls-right">
-        <div class="unit-switch" id="unitSwitch" role="group" aria-label="Measurement units">
-          <button data-unit="mm" aria-pressed="true">MM</button>
-          <button data-unit="cm" aria-pressed="false">CM</button>
-          <button data-unit="in" aria-pressed="false">INCH</button>
-          <button data-unit="ft" aria-pressed="false">FT</button>
+  <div class="stock-section" id="stockSection">
+    <div class="controls">
+      <div class="wrap controls-inner">
+        <div class="type-filters" id="typeFilters" role="group" aria-label="Filter by door type">
+          <button class="filter" data-type="all" aria-pressed="true">All</button>
+          <button class="filter" data-type="Sectional" aria-pressed="false">Sectional</button>
+          <button class="filter" data-type="Roller" aria-pressed="false">Roller</button>
+          <button class="filter" data-type="Up and Over" aria-pressed="false">Up &amp; Over</button>
+          <button class="filter" data-type="Side Hinged" aria-pressed="false">Side Hinged</button>
+          <button class="filter" data-type="Motors" aria-pressed="false">Motors</button>
         </div>
-        <div class="status-select">
-          <select id="statusSelect" aria-label="Show doors by availability">
-            <option value="available" selected>Available</option>
-            <option value="all">All</option>
-            <option value="sold">Sold</option>
-          </select>
+        <div class="controls-right">
+          <div class="unit-switch" id="unitSwitch" role="group" aria-label="Measurement units">
+            <button data-unit="mm" aria-pressed="true">MM</button>
+            <button data-unit="cm" aria-pressed="false">CM</button>
+            <button data-unit="in" aria-pressed="false">INCH</button>
+            <button data-unit="ft" aria-pressed="false">FT</button>
+          </div>
+          <div class="status-select">
+            <select id="statusSelect" aria-label="Show doors by availability">
+              <option value="available" selected>Available</option>
+              <option value="all">All</option>
+              <option value="sold">Sold</option>
+            </select>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="wrap" id="stock">
-    <div class="grid" id="grid"></div>
-    <div class="more-wrap" id="moreWrap" hidden>
-      <button class="more-btn" id="moreBtn" type="button">See more</button>
+    <div class="wrap" id="stock">
+      <div class="grid" id="grid"></div>
+      <div class="more-wrap" id="moreWrap" hidden>
+        <button class="more-btn" id="moreBtn" type="button">See more</button>
+      </div>
     </div>
   </div>
 
@@ -2105,6 +2110,14 @@
     visibleCount = PAGE_SIZE;
     render();
   });
+
+  // keep the sticky controls bar pinned directly below the sticky header
+  var siteHeader = document.querySelector("header.site");
+  function syncHeaderHeight() {
+    if (siteHeader) document.documentElement.style.setProperty("--header-h", siteHeader.offsetHeight + "px");
+  }
+  syncHeaderHeight();
+  window.addEventListener("resize", syncHeaderHeight);
 
   // unit switch
   var unitBtns = document.querySelectorAll("#unitSwitch button");
