@@ -137,6 +137,28 @@ window.REDOOR_DATA = {
 
   doors: [
     {
+      id: "d-20260904-hormann-m-ribbed-oak",
+      stockCode: "0826005",
+      title: "Hörmann M-ribbed sectional, Golden Oak",
+      type: "Sectional",
+      category: "Sectional",
+      dim: { w: 2134, h: 2125 },
+      price: 1095,
+      priceNote: "Motor, fobs & frame kit included",
+      grade: "A+",
+      condition: "New old stock, never fitted — panels are unmarked and the whole door has been serviced and repacked",
+      age: "2021 (new old stock)",
+      size: "2134 × 2125 mm (84\" × 84\")",
+      sizeAdjustable: false,
+      sizeNote: "",
+      colourOptions: ["Golden Oak"],
+      description:
+        "A Hörmann M-ribbed sectional in Golden Oak with a smooth Planar finish — the warm timber look that suits a brick or rendered house without any of the sanding and re-oiling a real wooden door needs. Made in 2021 but never fitted, so the panels are as clean as the day they left the factory. It comes with a brand-new Scartech 600 motor, two new fobs and a matching frame kit, so there is nothing else to source for the fit.",
+      photos: ["images/d-20260904-hormann-m-ribbed-oak-1.jpg"],
+      status: "sold",
+      dateAdded: "2026-09-04"
+    },
+    {
       id: "d-20260904-hormann-l-ribbed",
       stockCode: "0826004",
       title: "Hörmann L-ribbed sectional, White",
