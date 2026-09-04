@@ -137,6 +137,28 @@ window.REDOOR_DATA = {
 
   doors: [
     {
+      id: "d-20260904-hormann-l-ribbed",
+      stockCode: "0826004",
+      title: "Hörmann L-ribbed sectional, White",
+      type: "Sectional (low headroom)",
+      category: "Sectional",
+      dim: { w: 2250, h: 2125 },
+      price: 995,
+      priceNote: "Matching frame kit included — motor & fobs can be arranged",
+      grade: "A+",
+      condition: "New old stock, never fitted — panels are unmarked and the whole door has been serviced and repacked",
+      age: "2021 (new old stock)",
+      size: "2250 × 2125 mm (89\" × 84\")",
+      sizeAdjustable: false,
+      sizeNote: "",
+      colourOptions: ["RAL 9016 — Traffic White"],
+      description:
+        "A Hörmann L-ribbed sectional in white RAL 9016 with a smooth finish — the clean, wide-rib look that sits well on a modern house. Made in 2021 but never fitted, so the panels are unmarked. Fully insulated, built for low headroom garages, and it comes with a matching frame kit. No motor or fobs with this one, but we can arrange them if you want it automated.",
+      photos: ["images/d-20260904-hormann-l-ribbed-1.jpg"],
+      status: "available",
+      dateAdded: "2026-09-04"
+    },
+    {
       id: "d-20260904-hormann-georgian",
       stockCode: "0826002",
       title: "Hörmann Georgian insulated sectional, Black",
