@@ -144,7 +144,7 @@ window.REDOOR_DATA = {
       category: "Sectional",
       dim: { w: 2134, h: 2125 },
       price: 1095,
-      priceNote: "Includes brand-new motor, two fobs and matching frame kit",
+      priceNote: "Motor, fobs & frame kit included",
       grade: "A+",
       condition: "New old stock, never fitted \u2014 panels are unmarked and the whole door has been serviced and repacked",
       age: "2021 (new old stock)",
