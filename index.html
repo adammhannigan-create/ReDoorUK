@@ -627,7 +627,8 @@
 
   .door-body { padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 16px; flex: 1; }
 
-  .door-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; }
+  .door-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
+  .door-heading { min-width: 0; }
   .door-title {
     font-family: var(--font-display);
     font-weight: 500;
@@ -637,20 +638,44 @@
     margin: 0;
     text-wrap: balance;
   }
+  .stock-code {
+    display: block;
+    margin-top: 7px;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    color: var(--ink-soft);
+  }
   .price {
     font-family: var(--font-mono);
     font-weight: 700;
-    font-size: 1.15rem;
+    font-size: 1.32rem;
+    line-height: 1;
+    padding-top: 2px;
     white-space: nowrap;
     color: var(--ink);
   }
-  .price .note {
-    font-size: 0.66rem; font-weight: 400; color: var(--ink-soft);
-    display: block; text-align: right; letter-spacing: 0.04em; margin-top: 3px;
-    white-space: normal; line-height: 1.35; max-width: 132px; margin-left: auto;
-  }
 
   .desc { font-size: 0.92rem; color: var(--ink-soft); margin: 0; text-wrap: pretty; }
+
+  .included {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    margin: -6px 0 0;
+    font-size: 0.86rem;
+    line-height: 1.4;
+    color: var(--ink);
+  }
+  .included::before {
+    content: "";
+    flex: none;
+    width: 16px; height: 16px;
+    margin-top: 2px;
+    border-radius: 50%;
+    background: var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.6 6.3 5 8.6 9.4 3.7' fill='none' stroke='%23fff' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 10px 10px no-repeat;
+  }
 
   /* spec plate — the signature element */
   .plate {
@@ -1557,9 +1582,11 @@
 
   function mailtoFor(door) {
     var to = cfg.contactEmail || "";
-    var subj = "ReDoor enquiry: " + (door ? door.title : "");
+    var subj = "ReDoor enquiry: " + (door ? door.title : "") +
+      (door && door.stockCode ? " (code " + door.stockCode + ")" : "");
     var body = door
       ? "Hi,\n\nI'm interested in this door:\n\n" + door.title + " — " + money(door.price) +
+        (door.stockCode ? "\nCode " + door.stockCode : "") +
         "\n(ref " + door.id + ")\n\nIs it still available?\n\nThanks"
       : "Hi, I'd like to ask about a door.";
     return "mailto:" + encodeURIComponent(to) +
@@ -1607,6 +1634,7 @@
           "itemCondition": "https://schema.org/UsedCondition"
         }
       };
+      if (d.stockCode) { prod.sku = d.stockCode; prod.mpn = d.stockCode; }
       if (d.description) prod.description = d.description;
       if (imgs.length) prod.image = imgs;
       return prod;
@@ -2031,12 +2059,14 @@
         '<div class="photo">' + photoBlock(d) + stamp + badge + "</div>" +
         '<div class="door-body">' +
           '<div class="door-head">' +
-            '<h2 class="door-title">' + esc(d.title) + "</h2>" +
-            '<div class="price">' + money(d.price) +
-              (d.priceNote ? '<span class="note">' + esc(d.priceNote) + "</span>" : "") +
+            '<div class="door-heading">' +
+              '<h2 class="door-title">' + esc(d.title) + "</h2>" +
+              (d.stockCode ? '<span class="stock-code">Code ' + esc(d.stockCode) + "</span>" : "") +
             "</div>" +
+            '<div class="price">' + money(d.price) + "</div>" +
           "</div>" +
           (d.description ? '<p class="desc">' + esc(d.description) + "</p>" : "") +
+          (d.priceNote ? '<p class="included">' + esc(d.priceNote) + "</p>" : "") +
           '<div class="plate">' +
             specRow("Type", esc(d.type)) +
             specRow("Condition", esc(d.condition)) +

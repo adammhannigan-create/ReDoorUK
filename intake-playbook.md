@@ -32,7 +32,10 @@ Search Gmail, skipping anything already handled (label `ReDoor/Done`, id `Label_
 ### 2. For each NEW DOOR email
 - `get_thread` with FULL_CONTENT to read the body and see attachment filenames.
 - Read the details out of the plain-English body and map them to these fields:
-  `title, type, price, priceNote, condition, age, colourOptions[], description`.
+  `title, type, price, priceNote, stockCode, condition, age, colourOptions[], description`.
+- `stockCode` is Dad's own stock number (e.g. `0826004`). If the email gives one,
+  carry it through — it renders under the door title on the site and goes into the
+  enquiry email subject. Leave it out if there isn't one; never invent it.
   - `grade`: if Dad states a grade, set it to exactly one of `"A+"`, `"A"`,
     `"B"`, `"C"`, `"D"`. This drives the coloured badge on the listing and maps
     to the grading section. Omit if he doesn't give one — don't guess a grade.
