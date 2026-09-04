@@ -18,7 +18,7 @@ window.REDOOR_DATA = {
     contactEmail: "adammhannigan@gmail.com",
     contactPhone: "+44 7853 264404",
     area: "Collection / local delivery",
-    lastUpdated: "2026-08-20"
+    lastUpdated: "2026-09-04"
     // The hero is now an illustrated 5-stage restoration sequence drawn in
     // index.html — there is no hero image or video to configure here.
   },
@@ -136,6 +136,28 @@ window.REDOOR_DATA = {
   },
 
   doors: [
+    {
+      id: "d-20260904-hormann-m-ribbed",
+      stockCode: "0826001",
+      title: "Hörmann M-ribbed sectional, Anthracite",
+      type: "Sectional",
+      category: "Sectional",
+      dim: { w: 2134, h: 2125 },
+      price: 1095,
+      priceNote: "Includes brand-new motor, two fobs and matching frame kit",
+      grade: "A+",
+      condition: "New old stock, never fitted \u2014 panels are unmarked and the whole door has been serviced and repacked",
+      age: "2021 (new old stock)",
+      size: "2134 \u00d7 2125 mm (84\" \u00d7 84\")",
+      sizeAdjustable: false,
+      sizeNote: "",
+      colourOptions: ["RAL 7016 \u2014 Anthracite Grey"],
+      description:
+        "A H\u00f6rmann M-ribbed sectional in Anthracite RAL 7016 with a smooth Planar finish. Made in 2021 but never fitted, so the panels are as clean as the day they left the factory. It comes with a brand-new Schartech 600 motor, two new fobs and a matching frame kit \u2014 everything you need for the fit, nothing to source separately.",
+      photos: ["images/d-20260904-hormann-m-ribbed-1.jpg"],
+      status: "available",
+      dateAdded: "2026-09-04"
+    },
     {
       id: "d-20260820-hormann-sectional",
       title: "Hörmann T-ribbed sectional, low headroom",
