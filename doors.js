@@ -156,6 +156,7 @@ window.REDOOR_DATA = {
         "A Hörmann M-ribbed sectional in Golden Oak with a smooth Planar finish — the warm timber look that suits a brick or rendered house without any of the sanding and re-oiling a real wooden door needs. Made in 2021 but never fitted, so the panels are as clean as the day they left the factory. It comes with a brand-new Scartech 600 motor, two new fobs and a matching frame kit, so there is nothing else to source for the fit.",
       photos: ["images/d-20260904-hormann-m-ribbed-oak-1.jpg"],
       status: "sold",
+      soldUrl: "https://www.ebay.co.uk/itm/298302665593",
       dateAdded: "2026-09-04"
     },
     {
