@@ -13,11 +13,11 @@
 <meta property="og:title" content="ReDoor — Restored garage doors, given a second life" />
 <meta property="og:description" content="Salvaged, serviced and repainted garage doors. Sectional, roller, up-and-over and side-hinged. Run by Matthew Hannigan — 5.0 from 45 Google reviews. Chester &amp; Cheshire." />
 <meta property="og:url" content="https://adammhannigan-create.github.io/ReDoorUK/" />
-<meta property="og:image" content="https://adammhannigan-create.github.io/ReDoorUK/images/d-20260707-white-sectional-1.jpg" />
+<meta property="og:image" content="https://adammhannigan-create.github.io/ReDoorUK/images/d-20260820-hormann-sectional-1.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="ReDoor — Restored garage doors" />
 <meta name="twitter:description" content="Salvaged, serviced and repainted garage doors. 5.0 from 45 Google reviews. Chester &amp; Cheshire." />
-<meta name="twitter:image" content="https://adammhannigan-create.github.io/ReDoorUK/images/d-20260707-white-sectional-1.jpg" />
+<meta name="twitter:image" content="https://adammhannigan-create.github.io/ReDoorUK/images/d-20260820-hormann-sectional-1.jpg" />
 
 <!-- Structured data: local business + reviews -->
 <script type="application/ld+json">
@@ -437,6 +437,7 @@
     border-color: var(--ink);
   }
   .filter .n { opacity: 0.6; }
+  .filter[hidden] { display: none; }
 
   .type-filters { display: flex; gap: 8px; flex-wrap: wrap; }
   .controls-right { display: flex; gap: 12px; align-items: center; margin-left: auto; }
@@ -2093,6 +2094,14 @@
 
   // type filter buttons
   var typeBtns = document.querySelectorAll("#typeFilters .filter");
+
+  // only show a type filter if there's something of that type in stock
+  Array.prototype.forEach.call(typeBtns, function (b) {
+    var t = b.getAttribute("data-type");
+    if (t === "all") return;
+    var has = doors.some(function (d) { return d.category === t; });
+    b.hidden = !has;
+  });
   Array.prototype.forEach.call(typeBtns, function (b) {
     b.addEventListener("click", function () {
       Array.prototype.forEach.call(typeBtns, function (x) { x.setAttribute("aria-pressed", "false"); });
