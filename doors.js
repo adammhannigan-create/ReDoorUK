@@ -137,6 +137,28 @@ window.REDOOR_DATA = {
 
   doors: [
     {
+      id: "d-20260904-hormann-georgian",
+      stockCode: "0826002",
+      title: "Hörmann Georgian insulated sectional, Black",
+      type: "Sectional",
+      category: "Sectional",
+      dim: { w: 2060, h: 2125 },
+      price: 895,
+      priceNote: "Motor, fobs & frame kit included",
+      grade: "A+",
+      condition: "New old stock, never fitted \u2014 panels are unmarked and the whole door has been serviced and repacked",
+      age: "2021 (new old stock)",
+      size: "2060 \u00d7 2125 mm (81\" \u00d7 84\")",
+      sizeAdjustable: false,
+      sizeNote: "",
+      colourOptions: ["RAL 9005 \u2014 Black"],
+      description:
+        "A H\u00f6rmann Georgian sectional in black RAL 9005 with a wood-grain finish \u2014 the raised panel look that suits an older house without the upkeep of a timber door. Made in 2021 but never fitted, so the panels are unmarked. Fully insulated, and it comes with a brand-new Schartech 600 motor, two new fobs and a matching frame kit, so there is nothing else to source for the fit.",
+      photos: ["images/d-20260904-hormann-georgian-1.jpg"],
+      status: "available",
+      dateAdded: "2026-09-04"
+    },
+    {
       id: "d-20260904-hormann-m-ribbed",
       stockCode: "0826001",
       title: "Hörmann M-ribbed sectional, Anthracite",
