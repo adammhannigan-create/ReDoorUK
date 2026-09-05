@@ -142,18 +142,18 @@ window.REDOOR_DATA = {
       title: "Hörmann M-ribbed sectional, Golden Oak",
       type: "Sectional",
       category: "Sectional",
-      dim: { w: 2134, h: 2125 },
+      dim: { w: 4725, h: 2125 },
       price: 1095,
       priceNote: "Motor, fobs & frame kit included",
       grade: "A+",
       condition: "New old stock, never fitted — panels are unmarked and the whole door has been serviced and repacked",
       age: "2021 (new old stock)",
-      size: "2134 × 2125 mm (84\" × 84\")",
+      size: "4725 × 2125 mm (186\" × 84\")",
       sizeAdjustable: false,
       sizeNote: "",
       colourOptions: ["Golden Oak"],
       description:
-        "A Hörmann M-ribbed sectional in Golden Oak with a smooth Planar finish — the warm timber look that suits a brick or rendered house without any of the sanding and re-oiling a real wooden door needs. Made in 2021 but never fitted, so the panels are as clean as the day they left the factory. It comes with a brand-new Scartech 600 motor, two new fobs and a matching frame kit, so there is nothing else to source for the fit.",
+        "A Hörmann M-ribbed sectional in Golden Oak with a smooth Planar finish — the warm timber look that suits a brick or rendered house without any of the sanding and re-oiling a real wooden door needs. Made in 2021 but never fitted, so the panels are as clean as the day they left the factory. It comes with a brand-new Schartec 600 motor, two new fobs and a matching frame kit, so there is nothing else to source for the fit.",
       photos: ["images/d-20260904-hormann-m-ribbed-oak-1.jpg"],
       status: "sold",
       soldUrl: "https://www.ebay.co.uk/itm/298302665593",
@@ -198,7 +198,7 @@ window.REDOOR_DATA = {
       sizeNote: "",
       colourOptions: ["RAL 9005 \u2014 Black"],
       description:
-        "A H\u00f6rmann Georgian sectional in black RAL 9005 with a wood-grain finish \u2014 the raised panel look that suits an older house without the upkeep of a timber door. Made in 2021 but never fitted, so the panels are unmarked. Fully insulated, and it comes with a brand-new Scartech 600 motor, two new fobs and a matching frame kit, so there is nothing else to source for the fit.",
+        "A H\u00f6rmann Georgian sectional in black RAL 9005 with a wood-grain finish \u2014 the raised panel look that suits an older house without the upkeep of a timber door. Made in 2021 but never fitted, so the panels are unmarked. Fully insulated, and it comes with a brand-new Schartec 600 motor, two new fobs and a matching frame kit, so there is nothing else to source for the fit.",
       photos: ["images/d-20260904-hormann-georgian-1.jpg"],
       status: "available",
       dateAdded: "2026-09-04"
@@ -220,7 +220,7 @@ window.REDOOR_DATA = {
       sizeNote: "",
       colourOptions: ["RAL 7016 \u2014 Anthracite Grey"],
       description:
-        "A H\u00f6rmann M-ribbed sectional in Anthracite RAL 7016 with a smooth Planar finish. Made in 2021 but never fitted, so the panels are as clean as the day they left the factory. It comes with a brand-new Scartech 600 motor, two new fobs and a matching frame kit \u2014 everything you need for the fit, nothing to source separately.",
+        "A H\u00f6rmann M-ribbed sectional in Anthracite RAL 7016 with a smooth Planar finish. Made in 2021 but never fitted, so the panels are as clean as the day they left the factory. It comes with a brand-new Schartec 600 motor, two new fobs and a matching frame kit \u2014 everything you need for the fit, nothing to source separately.",
       photos: ["images/d-20260904-hormann-m-ribbed-1.jpg"],
       status: "available",
       dateAdded: "2026-09-04"
