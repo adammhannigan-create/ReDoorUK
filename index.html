@@ -3,19 +3,19 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>ReDoor — Restored garage doors in Chester &amp; Cheshire</title>
+<title>ReDoor | Restored garage doors in Chester &amp; Cheshire</title>
 <meta name="description" content="Restored garage doors given a second life. Salvaged, serviced and repainted to order by Matthew Hannigan (5.0 from 45 Google reviews). Sectional, roller, up-and-over and side-hinged doors. Chester and Cheshire." />
 <link rel="canonical" href="https://adammhannigan-create.github.io/ReDoorUK/" />
 
 <!-- Social / link preview -->
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="ReDoor" />
-<meta property="og:title" content="ReDoor — Restored garage doors, given a second life" />
-<meta property="og:description" content="Salvaged, serviced and repainted garage doors. Sectional, roller, up-and-over and side-hinged. Run by Matthew Hannigan — 5.0 from 45 Google reviews. Chester &amp; Cheshire." />
+<meta property="og:title" content="ReDoor | Restored garage doors, given a second life" />
+<meta property="og:description" content="Salvaged, serviced and repainted garage doors. Sectional, roller, up-and-over and side-hinged. Run by Matthew Hannigan, 5.0 from 45 Google reviews. Chester &amp; Cheshire." />
 <meta property="og:url" content="https://adammhannigan-create.github.io/ReDoorUK/" />
 <meta property="og:image" content="https://adammhannigan-create.github.io/ReDoorUK/images/d-20260820-hormann-sectional-1.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="ReDoor — Restored garage doors" />
+<meta name="twitter:title" content="ReDoor | Restored garage doors" />
 <meta name="twitter:description" content="Salvaged, serviced and repainted garage doors. 5.0 from 45 Google reviews. Chester &amp; Cheshire." />
 <meta name="twitter:image" content="https://adammhannigan-create.github.io/ReDoorUK/images/d-20260820-hormann-sectional-1.jpg" />
 
@@ -24,7 +24,7 @@
 {
   "@context": "https://schema.org",
   "@type": "HomeAndConstructionBusiness",
-  "name": "ReDoor — Matthew Hannigan Garage Doors",
+  "name": "ReDoor, Matthew Hannigan Garage Doors",
   "description": "Restored and reclaimed garage doors, serviced and repainted to order.",
   "url": "https://adammhannigan-create.github.io/ReDoorUK/",
   "telephone": "+447853264404",
@@ -359,18 +359,18 @@
   .hero[data-stage="4"] .door-art #outline,
   .hero[data-stage="5"] .door-art #outline { stroke: var(--accent); stroke-width: 2.2; opacity: 1; }
 
-  /* Drafting dimension lines — quiet, constant. */
+  /* Drafting dimension lines: quiet, constant. */
   .door-art #dims { stroke: var(--line-strong); stroke-width: 1; opacity: 0.9; }
   .hero[data-stage="4"] .door-art #dims,
   .hero[data-stage="5"] .door-art #dims { stroke: #A9AFB8; }
 
-  /* Grime, rust and damage — present at the start, gone by the clean. */
+  /* Grime, rust and damage: present at the start, gone by the clean. */
   .door-art #grime { opacity: 1; }
   .hero[data-stage="3"] .door-art #grime { opacity: 0.25; }
   .hero[data-stage="4"] .door-art #grime,
   .hero[data-stage="5"] .door-art #grime { opacity: 0; }
 
-  /* Inspection callouts — only during the assessment beat. */
+  /* Inspection callouts: only during the assessment beat. */
   .door-art #callouts { opacity: 0; }
   .hero[data-stage="2"] .door-art #callouts { opacity: 1; }
   .door-art #callouts line, .door-art #callouts path {
@@ -385,7 +385,7 @@
     font-family: var(--font-mono); font-size: 9.5px; font-weight: 700; fill: var(--ink);
   }
 
-  /* Paint sweep — the panels fill left to right. */
+  /* Paint sweep: the panels fill left to right. */
   .door-art #paintClipRect { transition: width 1.1s var(--ease); }
   .door-art #paintfill { opacity: 0; transition: opacity 0.5s var(--ease); }
   .hero[data-stage="3"] .door-art #paintfill,
@@ -438,6 +438,8 @@
   }
   .filter .n { opacity: 0.6; }
   .filter[hidden] { display: none; }
+  /* display:flex/grid on a component beats the browser's [hidden] rule, so force it. */
+  [hidden] { display: none !important; }
 
   .type-filters { display: flex; gap: 8px; flex-wrap: wrap; }
   .controls-right { display: flex; gap: 12px; align-items: center; margin-left: auto; }
@@ -579,13 +581,14 @@
   .car-dots button[aria-current="true"] { background: var(--surface); }
   @media (hover: none) { .car-btn { opacity: 1; } }
 
-  /* grade badge — colour-coded circle in the corner of each listing */
+  /* grade badge: colour-coded circle in the corner of each listing */
   .grade-badge {
     position: absolute;
     top: 12px; right: 12px;
     width: 42px; height: 42px;
     border-radius: 50%;
-    display: grid; place-items: center;
+    display: flex; align-items: center; justify-content: center;
+    line-height: 1;
     font-family: var(--font-display);
     font-weight: 700;
     font-size: 0.98rem;
@@ -600,7 +603,7 @@
   .grade-badge.g-b { background: #C8DE4E; }
   .grade-badge.g-c { background: #F2CE2E; }
   .grade-badge.g-d { background: #F0912E; color: #2A1400; }
-  .grade-badge .plus { font-size: 0.7em; }
+  .grade-badge .plus { font-size: 0.7em; line-height: 1; margin-left: 0.04em; transform: translateY(-0.22em); }
 
   .stamp {
     position: absolute;
@@ -625,7 +628,7 @@
     padding: 6px 12px 5px;
   }
 
-  /* Sold-on-eBay pill — the SOLD stamp becomes a link out to the listing. */
+  /* Sold-on-eBay pill: the SOLD stamp becomes a link out to the listing. */
   a.stamp.sold-ebay {
     display: inline-flex;
     align-items: center;
@@ -705,7 +708,7 @@
     background: var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.6 6.3 5 8.6 9.4 3.7' fill='none' stroke='%23fff' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 10px 10px no-repeat;
   }
 
-  /* spec plate — the signature element */
+  /* spec plate: the signature element */
   .plate {
     border: 1px solid var(--line);
     border-radius: 8px;
@@ -1074,14 +1077,15 @@
   .grade-dot {
     width: 46px; height: 46px;
     border-radius: 50%;
-    display: grid; place-items: center;
+    display: flex; align-items: center; justify-content: center;
+    line-height: 1;
     font-family: var(--font-display);
     font-weight: 700;
     font-size: 1.02rem;
     color: #0E1A0E;
     box-shadow: inset 0 -2px 0 rgba(0,0,0,0.1);
   }
-  .grade-dot .plus { font-size: 0.7em; }
+  .grade-dot .plus { font-size: 0.7em; line-height: 1; margin-left: 0.04em; transform: translateY(-0.22em); }
   .grade-dot.g-aplus { background: #2FBF3F; }
   .grade-dot.g-a { background: #7FD65B; }
   .grade-dot.g-b { background: #C8DE4E; }
@@ -1466,7 +1470,7 @@
           <div class="hero-stage is-active" data-for="1" role="tabpanel" aria-labelledby="railStep1">
             <span class="num">01</span>
             <h2>Rescued</h2>
-            <p>Sound doors taken out of houses that were replacing them &mdash; bought and brought back to the workshop.</p>
+            <p>Sound doors taken out of houses that were replacing them, then bought and brought back to the workshop.</p>
           </div>
           <div class="hero-stage" data-for="2" role="tabpanel" aria-labelledby="railStep2">
             <span class="num">02</span>
@@ -1476,7 +1480,7 @@
           <div class="hero-stage" data-for="3" role="tabpanel" aria-labelledby="railStep3">
             <span class="num">03</span>
             <h2>Stripped &amp; cleaned</h2>
-            <p>Years of grime off and back to a clean finish &mdash; and repainted in any colour you ask for.</p>
+            <p>Years of grime off and back to a clean finish, then repainted in any colour you ask for.</p>
           </div>
           <div class="hero-stage" data-for="4" role="tabpanel" aria-labelledby="railStep4">
             <span class="num">04</span>
@@ -1486,7 +1490,7 @@
           <div class="hero-stage" data-for="5" role="tabpanel" aria-labelledby="railStep5">
             <span class="num">05</span>
             <h2>Ready to fit</h2>
-            <p>Graded, priced and listed. It arrives complete &mdash; no chasing missing bits.</p>
+            <p>Graded, priced and listed. It arrives complete, with no chasing missing bits.</p>
           </div>
         </div>
       </div><!-- /.hero-process -->
@@ -1561,7 +1565,7 @@
   <div class="wrap foot-inner">
     <div>
       <a class="brand" href="#top"><span class="re">Re</span>Door</a>
-      <p class="foot-note">Every door is one-off, reclaimed stock. Sizes are approximate — measure your opening before buying.</p>
+      <p class="foot-note">Every door is one-off, reclaimed stock. Sizes are approximate, so measure your opening before buying.</p>
     </div>
     <div class="foot-contact" id="footContact"></div>
   </div>
@@ -1602,6 +1606,14 @@
       .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
   }
 
+  // Accepts "2026-09-04" or an already-UK "04/09/2026" and prints dd/mm/yyyy.
+  function ukDate(v) {
+    var str = String(v || "").trim();
+    var iso = str.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    if (iso) return iso[3] + "/" + iso[2] + "/" + iso[1];
+    return str;
+  }
+
   function money(n) {
     if (n == null || n === "") return "";
     if (typeof n === "number") return "£" + n.toLocaleString("en-GB");
@@ -1613,7 +1625,7 @@
     var subj = "ReDoor enquiry: " + (door ? door.title : "") +
       (door && door.stockCode ? " (code " + door.stockCode + ")" : "");
     var body = door
-      ? "Hi,\n\nI'm interested in this door:\n\n" + door.title + " — " + money(door.price) +
+      ? "Hi,\n\nI'm interested in this door:\n\n" + door.title + "\n" + money(door.price) +
         (door.stockCode ? "\nCode " + door.stockCode : "") +
         "\n(ref " + door.id + ")\n\nIs it still available?\n\nThanks"
       : "Hi, I'd like to ask about a door.";
@@ -1693,7 +1705,9 @@
   }
   metaBits.push('<span><span class="dot"></span><b>' + avail.length + '</b> available now</span>');
   if (cfg.area) metaBits.push("<span>" + esc(cfg.area) + "</span>");
-  if (cfg.lastUpdated) metaBits.push("<span>Updated " + esc(cfg.lastUpdated) + "</span>");
+  if (cfg.lastUpdated) {
+    metaBits.push("<span>Stock updated weekly. Last updated " + esc(ukDate(cfg.lastUpdated)) + "</span>");
+  }
   document.getElementById("heroMeta").innerHTML = metaBits.join("");
 
   // ---- Hero: auto-playing restoration sequence ----
@@ -2074,7 +2088,7 @@
     if (d.status === "sold") {
       stamp = d.soldUrl
         ? '<a class="stamp sold sold-ebay" href="' + esc(d.soldUrl) + '" target="_blank" rel="noopener" ' +
-          'title="See the sold listing on eBay" aria-label="Sold on eBay \u2014 view the listing">' +
+          'title="See the sold listing on eBay" aria-label="Sold on eBay, view the listing">' +
           "SOLD ON" + STAMP_EBAY_LOGO + "</a>"
         : '<div class="stamp sold">SOLD</div>';
     } else {
@@ -2164,8 +2178,15 @@
   }
 
   if (moreBtn) moreBtn.addEventListener("click", function () {
+    var firstNew = visibleCount;
     visibleCount += PAGE_SIZE;
     render();
+    var cards = grid.querySelectorAll(".door");
+    var target = cards[firstNew];
+    if (target) {
+      target.setAttribute("tabindex", "-1");
+      target.focus({ preventScroll: true });
+    }
   });
 
   // type filter buttons
