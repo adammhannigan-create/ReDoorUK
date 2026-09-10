@@ -82,6 +82,7 @@
     --radius: 10px;
 
     --z-header: 100;
+    --z-tape: 92;
 
     --ease: cubic-bezier(0.22, 1, 0.36, 1);
   }
@@ -495,6 +496,32 @@
   .unit-switch button[aria-pressed="true"]::after {
     background-image: repeating-linear-gradient(90deg, #F5C518 0 1.5px, transparent 1.5px 6px);
   }
+  /* The metal tab on the end of a real tape. It says what the tape is for,
+     which the switcher on its own never did. */
+  .tape-tab {
+    display: none;
+    align-items: center;
+    align-self: stretch;
+    padding: 0 11px;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #F5C518;
+    background: #1A1A1A;
+    border-right: 1px solid rgba(26,26,26,0.35);
+  }
+
+  /* Changing units used to alter nothing you could see. The size values now
+     flick over, so the tape reads as a control rather than an ornament. */
+  .szv { display: inline-block; }
+  .szv.is-flipping { animation: sizeFlip 0.34s var(--ease); }
+  @keyframes sizeFlip {
+    0%   { opacity: 0; transform: translateY(-0.35em); }
+    100% { opacity: 1; transform: none; }
+  }
+
   .status-select { position: relative; }
   .status-select select {
     font-family: var(--font-mono);
@@ -1309,6 +1336,31 @@
        filters scroll away and the section chips are what stays. */
     .controls { position: static; top: auto; }
 
+    /* The tape comes out of the filter bar and travels down the page with the
+       stock instead, sitting low and left where a thumb already is. It leaves
+       when the stock does, because units stop mattering at the paint section.
+       Bottom left keeps it clear of the WhatsApp button. */
+    .unit-switch {
+      position: fixed;
+      left: 18px;
+      bottom: 16px;
+      z-index: var(--z-tape);
+      box-shadow: 0 6px 12px -4px rgba(20, 24, 31, 0.4);
+      transition: transform .34s var(--ease), opacity .22s var(--ease);
+    }
+    .unit-switch .tape-tab { display: inline-flex; }
+
+    /* Default is on screen. The class hides it, so if the observer never runs
+       the tape is still there and still works. */
+    .unit-switch.tape-stowed {
+      transform: translateY(calc(100% + 20px));
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Room at the end of the list so the tape never covers the last CTA. */
+    .stock-section { padding-bottom: 72px; }
+
     .mobile-nav {
       display: flex;
       gap: 8px;
@@ -1386,6 +1438,8 @@
     .swatch .nm { font-size: 0.68rem; }
     .phone-cta span { display: none; }
     .phone-cta { padding: 9px 11px; }
+    .unit-switch { left: 15px; }
+    .unit-switch .tape-tab { display: none; }
   }
 
   /* ---------- Touch targets ----------
@@ -1415,6 +1469,9 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
+    .unit-switch { transition: opacity .01s linear; }
+    .unit-switch.tape-stowed { transform: none; }
+    .szv.is-flipping { animation: none; }
     .door { opacity: 1; transform: none; transition: none; }
     * { scroll-behavior: auto; }
     .hero-stage.is-in { animation: none; }
@@ -1653,6 +1710,7 @@
         </div>
         <div class="controls-right">
           <div class="unit-switch" id="unitSwitch" role="group" aria-label="Measurement units">
+            <span class="tape-tab" aria-hidden="true">Sizes</span>
             <button data-unit="mm" aria-pressed="true">MM</button>
             <button data-unit="cm" aria-pressed="false">CM</button>
             <button data-unit="in" aria-pressed="false">INCH</button>
@@ -2402,6 +2460,7 @@
   window.addEventListener("resize", syncHeaderHeight);
 
   // unit switch
+  var unitSwitch = document.getElementById("unitSwitch");
   var unitBtns = document.querySelectorAll("#unitSwitch button");
   Array.prototype.forEach.call(unitBtns, function (b) {
     b.addEventListener("click", function () {
@@ -2410,13 +2469,40 @@
       currentUnit = b.getAttribute("data-unit");
       var cells = document.querySelectorAll(".szv");
       for (var i = 0; i < cells.length; i++) {
-        cells[i].textContent = sizeText(
-          { w: +cells[i].getAttribute("data-w"), h: +cells[i].getAttribute("data-h") },
+        var cell = cells[i];
+        cell.textContent = sizeText(
+          { w: +cell.getAttribute("data-w"), h: +cell.getAttribute("data-h") },
           currentUnit
         );
+        // Restart the flick even on a rapid second tap.
+        cell.classList.remove("is-flipping");
+        void cell.offsetWidth;
+        cell.classList.add("is-flipping");
       }
     });
   });
+
+  // Cleaning up after the flick keeps the class off elements that get
+  // re-rendered by a filter change.
+  document.addEventListener("animationend", function (e) {
+    if (e.animationName === "sizeFlip") e.target.classList.remove("is-flipping");
+  }, true);
+
+  // On a phone the tape is fixed to the bottom of the screen, so it has to know
+  // when to leave: it travels down with the stock and stows itself once the
+  // list is behind you, which is where the paint section starts. Sizes are not
+  // what you are reading about from there on.
+  (function tapeTravel() {
+    var section = document.getElementById("stockSection");
+    if (!unitSwitch || !section || !("IntersectionObserver" in window)) return;
+    // Trimming the root from the top means the tape is out whenever stock fills
+    // the lower part of the screen, which is where the tape itself sits. Once
+    // the paint section takes that space the tape has already gone, rather than
+    // hanging on for the last sliver of the list.
+    new IntersectionObserver(function (entries) {
+      unitSwitch.classList.toggle("tape-stowed", !entries[0].isIntersecting);
+    }, { rootMargin: "-55% 0px 0px 0px" }).observe(section);
+  })();
 
   // carousel navigation (event delegation)
   grid.addEventListener("click", function (e) {
