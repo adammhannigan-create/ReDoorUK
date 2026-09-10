@@ -1388,6 +1388,32 @@
     .phone-cta { padding: 9px 11px; }
   }
 
+  /* ---------- Touch targets ----------
+     Anything you tap with a thumb gets to 44px. Scoped to coarse pointers so
+     the desktop layout keeps its tighter proportions. */
+  @media (pointer: coarse) {
+    .filter { min-height: 44px; padding-left: 16px; padding-right: 16px; }
+    .unit-switch button { min-height: 44px; padding: 6px 14px 12px; }
+    .status-select select { min-height: 44px; }
+    .more-btn { min-height: 44px; }
+    .phone-cta { min-height: 44px; }
+    .rating-pill { min-height: 44px; }
+    .door-more summary { min-height: 44px; }
+    .hero-btn { min-height: 44px; }
+
+    /* Inline links report the height of their text, not of the line box, so
+       these need real padding before a thumb can land on them. */
+    .foot-contact a,
+    .reviews-more a,
+    .ebay-more a,
+    .eco-source a {
+      display: inline-block;
+      padding-block: 14px;
+    }
+    .foot-contact { line-height: 1.2; }
+    .reviews-more, .ebay-more { margin-top: 10px; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .door { opacity: 1; transform: none; transition: none; }
     * { scroll-behavior: auto; }
@@ -2164,10 +2190,16 @@
     return '<div class="row"><div class="k">' + esc(k) + '</div><div class="v">' + v + "</div></div>";
   }
 
-  function photoBlock(d) {
+  function photoBlock(d, eager) {
+    // The first card is above the fold on a phone, so it loads eagerly and gets
+    // priority. Everything below it stays lazy.
+    var loadAttrs = eager
+      ? ' loading="eager" fetchpriority="high" decoding="async"'
+      : ' loading="lazy" decoding="async"';
     if (d.photos && d.photos.length > 1) {
-      var imgs = d.photos.map(function (p) {
-        return '<img src="' + esc(p) + '" alt="' + esc(d.title) + '" loading="lazy" />';
+      var imgs = d.photos.map(function (p, n) {
+        return '<img src="' + esc(p) + '" alt="' + esc(d.title) + '"' +
+          (eager && n === 0 ? loadAttrs : ' loading="lazy" decoding="async"') + " />";
       }).join("");
       var dots = d.photos.map(function (p, idx) {
         return '<button type="button" class="cdot" data-i="' + idx + '" aria-current="' + (idx === 0 ? "true" : "false") + '" aria-label="Photo ' + (idx + 1) + '"></button>';
@@ -2180,7 +2212,7 @@
         "</div>";
     }
     if (d.photos && d.photos.length === 1) {
-      return '<img src="' + esc(d.photos[0]) + '" alt="' + esc(d.title) + '" loading="lazy" />';
+      return '<img src="' + esc(d.photos[0]) + '" alt="' + esc(d.title) + '"' + loadAttrs + " />";
     }
     return '<div class="ph">' + DOOR_SVG + "</div>";
   }
@@ -2205,7 +2237,7 @@
     '<tspan fill="#E53238">e</tspan><tspan fill="#0064D2">b</tspan><tspan fill="#F5AF02">a</tspan><tspan fill="#86B817">y</tspan>' +
     "</text></svg>";
 
-  function cardHTML(d) {
+  function cardHTML(d, i) {
     var stamp;
     if (d.status === "sold") {
       stamp = d.soldUrl
@@ -2246,7 +2278,7 @@
 
     return (
       '<article class="door ' + (d.status === "sold" ? "sold" : "") + '">' +
-        '<div class="photo">' + photoBlock(d) + stamp + badge + "</div>" +
+        '<div class="photo">' + photoBlock(d, i === 0) + stamp + badge + "</div>" +
         '<div class="door-body">' +
           '<div class="door-head">' +
             '<div class="door-heading">' +
@@ -2330,12 +2362,19 @@
   var typeBtns = document.querySelectorAll("#typeFilters .filter");
 
   // only show a type filter if there's something of that type in stock
+  var typesInStock = 0;
   Array.prototype.forEach.call(typeBtns, function (b) {
     var t = b.getAttribute("data-type");
     if (t === "all") return;
     var has = doors.some(function (d) { return d.category === t; });
     b.hidden = !has;
+    if (has) typesInStock++;
   });
+
+  // "All / Sectional" is not a choice. Until there are two types on the shelf
+  // the whole group is hidden, which also gives a phone back a row of screen.
+  var typeGroup = document.getElementById("typeFilters");
+  if (typeGroup) typeGroup.hidden = typesInStock < 2;
   Array.prototype.forEach.call(typeBtns, function (b) {
     b.addEventListener("click", function () {
       Array.prototype.forEach.call(typeBtns, function (x) { x.setAttribute("aria-pressed", "false"); });
