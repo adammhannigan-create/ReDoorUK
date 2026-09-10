@@ -81,7 +81,12 @@
 
   * { box-sizing: border-box; }
 
-  html { -webkit-text-size-adjust: 100%; }
+  html {
+    -webkit-text-size-adjust: 100%;
+    /* Anchor jumps have to clear the sticky header, or the section
+       heading lands underneath it. --header-h is measured in JS. */
+    scroll-padding-top: calc(var(--header-h, 64px) + 14px);
+  }
 
   body {
     margin: 0;
@@ -155,6 +160,10 @@
   }
   .site-nav a:hover { color: var(--ink); }
   .site-nav a:hover::after { transform: scaleX(1); }
+
+  /* Phone nav. The desktop nav is hidden below 760px, so the same links come
+     back as a swipeable chip row that stays with the sticky header. */
+  .mobile-nav { display: none; }
 
   .phone-cta {
     display: inline-flex;
@@ -740,6 +749,41 @@
     color: var(--ink-soft);
   }
 
+  /* Condition, age, colours and the full write-up sit behind a disclosure so a
+     card stays short enough to compare two doors without scrolling. */
+  /* Pinned to the bottom of the card so the disclosure and the buttons stay
+     together, and cards of different heights line their actions up. */
+  .door-body > .door-more { margin-top: auto; border-top: 1px solid var(--line); padding-top: 14px; }
+  .door-more + .door-foot { margin-top: 0; }
+  .door-more summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    min-height: 30px;
+    list-style: none;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    letter-spacing: 0.03em;
+    color: var(--accent-deep);
+    transition: color .16s var(--ease);
+  }
+  .door-more summary::-webkit-details-marker { display: none; }
+  .door-more summary::after {
+    content: "";
+    flex: 0 0 auto;
+    width: 8px; height: 8px;
+    margin-right: 3px;
+    border-right: 1.6px solid currentColor;
+    border-bottom: 1.6px solid currentColor;
+    transform: translateY(-2px) rotate(45deg);
+    transition: transform .2s var(--ease);
+  }
+  .door-more[open] summary::after { transform: translateY(2px) rotate(-135deg); }
+  .door-more summary:hover { color: var(--accent); }
+  .door-more-body { display: flex; flex-direction: column; gap: 14px; padding-top: 14px; }
+
   .door-foot { margin-top: auto; display: flex; gap: 8px; }
   .ask {
     display: inline-flex;
@@ -896,8 +940,15 @@
   .reviews-more a:hover { border-bottom-color: var(--accent); }
 
   @media (max-width: 680px) {
-    .reviews-top { grid-template-columns: 1fr; gap: 22px; }
+    .reviews-top { grid-template-columns: minmax(0, 1fr); gap: 22px; }
+    .reviews-lead { min-width: 0; }
+  }
+
+  /* Between 560 and 680 the badge still reads as one row. Below that the four
+     blocks push the page wider than the screen, so it stays a stacked card. */
+  @media (min-width: 561px) and (max-width: 680px) {
     .rep-badge { display: flex; align-items: center; justify-content: center; gap: 18px; text-align: left; }
+    .rep-badge > * { min-width: 0; }
     .rep-badge .score { font-size: 2.6rem; }
     .rep-badge .biz { border-top: none; border-left: 1px solid var(--line); padding: 0 0 0 16px; margin: 0; }
     .rep-badge .stars { margin: 4px 0; }
@@ -1245,6 +1296,47 @@
 
   @media (max-width: 760px) {
     .site-nav { display: none; }
+    .site-bar { padding-top: 8px; padding-bottom: 8px; }
+
+    /* Two sticky bars would take a quarter of a phone screen, so the stock
+       filters scroll away and the section chips are what stays. */
+    .controls { position: static; top: auto; }
+
+    .mobile-nav {
+      display: flex;
+      gap: 8px;
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 18px 8px;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      scroll-snap-type: x proximity;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .mobile-nav::-webkit-scrollbar { display: none; }
+    .mobile-nav a {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      display: inline-flex;
+      align-items: center;
+      min-height: 40px;
+      padding: 0 15px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+      background: var(--surface);
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+      transition: background .16s var(--ease), border-color .16s var(--ease);
+    }
+    .mobile-nav a:active,
+    .mobile-nav a:focus-visible {
+      background: color-mix(in srgb, var(--accent) 10%, var(--surface));
+      border-color: var(--accent);
+    }
   }
 
   @media (max-width: 560px) {
@@ -1322,6 +1414,13 @@
       <span id="headerPhoneNum">Call</span>
     </a>
   </div>
+  <nav class="mobile-nav" aria-label="Sections">
+    <a href="#stock">Stock</a>
+    <a href="#grading">Grades</a>
+    <a href="#delivery">Delivery</a>
+    <a href="#paint">Painting</a>
+    <a href="#reviews">Reviews</a>
+  </nav>
 </header>
 
 <main id="top">
@@ -2037,6 +2136,22 @@
       }, { rootMargin: "0px 0px -40px 0px" })
     : null;
 
+  // Grade to plain-English label, read from the same scale the Grades section
+  // renders, so a card and the legend can never drift apart.
+  var GRADE_LABELS = (function () {
+    var m = {};
+    (((D.grading || {}).scale) || []).forEach(function (g) {
+      m[String(g.grade).toUpperCase()] = g.label;
+    });
+    return m;
+  })();
+
+  function gradeCell(d) {
+    if (!d.grade) return "";
+    var label = GRADE_LABELS[String(d.grade).toUpperCase()];
+    return esc(d.grade) + (label ? ' <span class="adj">&middot; ' + esc(label) + "</span>" : "");
+  }
+
   function specRow(k, v) {
     if (!v) return "";
     return '<div class="row"><div class="k">' + esc(k) + '</div><div class="v">' + v + "</div></div>";
@@ -2110,6 +2225,18 @@
       cta = '<a class="ask" href="' + mailtoFor(d) + '">Ask about this door &rarr;</a>';
     }
 
+    // The card front carries only what you compare on: photo, name, price, type,
+    // size and grade. Everything else opens on demand.
+    var detail =
+      (d.description ? '<p class="desc">' + esc(d.description) + "</p>" : "") +
+      ((d.condition || d.age)
+        ? '<div class="plate">' +
+            specRow("Condition", esc(d.condition)) +
+            specRow("Age", esc(d.age)) +
+          "</div>"
+        : "") +
+      (chips ? '<div class="colours">' + chips + "</div>" : "");
+
     return (
       '<article class="door ' + (d.status === "sold" ? "sold" : "") + '">' +
         '<div class="photo">' + photoBlock(d) + stamp + badge + "</div>" +
@@ -2121,15 +2248,18 @@
             "</div>" +
             '<div class="price">' + money(d.price) + "</div>" +
           "</div>" +
-          (d.description ? '<p class="desc">' + esc(d.description) + "</p>" : "") +
           (d.priceNote ? '<p class="included">' + esc(d.priceNote) + "</p>" : "") +
           '<div class="plate">' +
             specRow("Type", esc(d.type)) +
-            specRow("Condition", esc(d.condition)) +
-            specRow("Age", esc(d.age)) +
             specRow("Size", sizeCell(d)) +
+            specRow("Grade", gradeCell(d)) +
           "</div>" +
-          (chips ? '<div class="colours">' + chips + "</div>" : "") +
+          (detail
+            ? '<details class="door-more">' +
+                "<summary>Condition, age and full description</summary>" +
+                '<div class="door-more-body">' + detail + "</div>" +
+              "</details>"
+            : "") +
           '<div class="door-foot">' + cta + "</div>" +
         "</div>" +
       "</article>"
