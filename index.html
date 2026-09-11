@@ -212,6 +212,10 @@
     isolation: isolate;
     display: flex;
     flex-direction: column;
+    /* The photograph is the argument, so it gets real height and the copy
+       sits low against it rather than floating in the middle. */
+    min-height: clamp(500px, 78vh, 780px);
+    justify-content: flex-end;
     background: #0B0C0E;
     color: #F5F5F2;
     border-bottom: 1px solid var(--line);
@@ -240,8 +244,8 @@
     pointer-events: none;
     background:
       linear-gradient(to top,
-        rgba(9,10,12,0.95) 0%, rgba(9,10,12,0.82) 26%,
-        rgba(9,10,12,0.34) 60%, rgba(9,10,12,0.12) 84%, rgba(9,10,12,0) 100%),
+        rgba(9,10,12,0.88) 0%, rgba(9,10,12,0.78) 22%, rgba(9,10,12,0.54) 44%,
+        rgba(9,10,12,0.24) 68%, rgba(9,10,12,0.07) 88%, rgba(9,10,12,0) 100%),
       linear-gradient(to right,
         rgba(9,10,12,0.78) 0%, rgba(9,10,12,0.62) 26%, rgba(9,10,12,0.30) 56%,
         rgba(9,10,12,0.08) 80%, rgba(9,10,12,0) 100%),
@@ -251,13 +255,13 @@
   .hero-content {
     position: relative;
     z-index: 2;
-    padding-top: clamp(56px, 9vw, 116px);
-    padding-bottom: clamp(30px, 4.5vw, 50px);
+    padding-top: clamp(80px, 14vh, 170px);
+    padding-bottom: clamp(34px, 4.5vw, 52px);
   }
   .hero-content h1 {
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: clamp(2.05rem, 4.4vw, 3.5rem);
+    font-size: clamp(2.15rem, 4.8vw, 3.9rem);
     line-height: 1.02;
     letter-spacing: -0.035em;
     margin: 0 0 16px;
@@ -335,84 +339,6 @@
   }
   .hero .rating-pill:hover { border-color: rgba(245, 245, 242, 0.7); }
   .hero .rating-pill .lbl { color: #C2C7C0; }
-
-  /* ---- Restoration rail: the provenance, said out loud ---- */
-  .hero-rail {
-    position: relative;
-    z-index: 2;
-    display: grid;
-    grid-auto-flow: column;
-    /* A percentage here resolves against an indefinite inline size inside a
-       scroll container, which collapses to max-content and stops the detail
-       line wrapping. vw is definite, so the track is real. */
-    grid-auto-columns: clamp(200px, 78vw, 340px);
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    background: #07080A;
-    border-top: 1px solid #22262B;
-  }
-  .hero-rail::-webkit-scrollbar { display: none; }
-  @media (min-width: 1024px) {
-    .hero-rail {
-      grid-auto-flow: row;
-      grid-template-columns: repeat(5, 1fr);
-      overflow-x: visible;
-      scroll-snap-type: none;
-      /* Match the .wrap gutter so step 01 starts under the headline. */
-      padding-inline: max(40px, calc((100% - var(--maxw)) / 2 + 40px));
-    }
-  }
-  .hero-rail .rail-step {
-    appearance: none;
-    min-width: 0;
-    scroll-snap-align: start;
-    background: transparent;
-    border: 0;
-    border-right: 1px solid #181C21;
-    border-top: 2px solid transparent;
-    padding: 15px 18px 17px;
-    text-align: left;
-    font: inherit;
-    color: inherit;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    transition: background 0.25s var(--ease), border-color 0.25s var(--ease);
-  }
-  .hero-rail .rail-step:last-child { border-right: 0; }
-  .hero-rail .rail-n {
-    font-family: var(--font-mono);
-    font-weight: 700;
-    font-size: 0.64rem;
-    letter-spacing: 0.14em;
-    color: #6E747C;
-  }
-  .rail-label {
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 0.92rem;
-    letter-spacing: -0.01em;
-    color: #F5F5F2;
-  }
-  .rail-what {
-    font-size: 0.72rem;
-    line-height: 1.45;
-    color: #858B93;
-  }
-  .hero-rail .rail-step.is-done { background: rgba(245, 245, 242, 0.03); }
-  .hero-rail .rail-step[aria-selected="true"] {
-    background: rgba(245, 245, 242, 0.09);
-    border-top-color: #F5F5F2;
-  }
-  .hero-rail .rail-step[aria-selected="true"] .rail-n { color: #F5F5F2; }
-  .hero-rail .rail-step[aria-selected="true"] .rail-what { color: #C2C7C0; }
-  .hero-rail .rail-step:hover { background: rgba(245, 245, 242, 0.06); }
-  .hero-rail .rail-step:focus-visible {
-    outline: 2px solid #F5F5F2;
-    outline-offset: -3px;
-  }
 
   /* ---------- Controls ---------- */
 
@@ -1393,7 +1319,7 @@
     .site-bar { padding-left: 18px; padding-right: 18px; }
     .grid { grid-template-columns: 1fr; gap: 18px; padding-bottom: 56px; }
     .plate .row { grid-template-columns: 84px 1fr; }
-    .hero-content { padding-top: 64px; padding-bottom: 26px; }
+    .hero-content { padding-top: 80px; padding-bottom: 30px; }
     .hero-photo img { object-position: 60% 66%; }
     .hero-content h1 { max-width: 14ch; }
     .hero-content .lede { max-width: none; }
@@ -1482,7 +1408,7 @@
 </header>
 
 <main id="top">
-  <section class="hero" id="hero" data-stage="1">
+  <section class="hero" id="hero">
 
     <div class="hero-photo">
       <picture>
@@ -1513,33 +1439,6 @@
       <div class="meta" id="heroMeta"></div>
     </div>
 
-    <div class="hero-rail" id="heroRail" role="tablist" aria-label="How a ReDoor door gets restored">
-      <button class="rail-step" id="railStep1" role="tab" type="button" data-stage="1" aria-selected="true">
-        <span class="rail-n">01</span>
-        <span class="rail-label">Rescued</span>
-        <span class="rail-what">Taken out of houses that were replacing them, then brought back to the workshop.</span>
-      </button>
-      <button class="rail-step" id="railStep2" role="tab" type="button" data-stage="2" aria-selected="false">
-        <span class="rail-n">02</span>
-        <span class="rail-label">Assessed</span>
-        <span class="rail-what">Springs, cables, rollers, hinges and tracks all checked, and the work written down.</span>
-      </button>
-      <button class="rail-step" id="railStep3" role="tab" type="button" data-stage="3" aria-selected="false">
-        <span class="rail-n">03</span>
-        <span class="rail-label">Cleaned</span>
-        <span class="rail-what">Years of grime off and back to a clean finish, then repainted in any colour you ask for.</span>
-      </button>
-      <button class="rail-step" id="railStep4" role="tab" type="button" data-stage="4" aria-selected="false">
-        <span class="rail-n">04</span>
-        <span class="rail-label">Serviced</span>
-        <span class="rail-what">Worn parts replaced, everything adjusted and greased, then a new fixings pack made up.</span>
-      </button>
-      <button class="rail-step" id="railStep5" role="tab" type="button" data-stage="5" aria-selected="false">
-        <span class="rail-n">05</span>
-        <span class="rail-label">Ready</span>
-        <span class="rail-what">Graded, priced and listed. It arrives complete, with no chasing missing bits.</span>
-      </button>
-    </div>
   </section>
 
   <div class="stock-section" id="stockSection">
@@ -1747,7 +1646,11 @@
   }
   document.getElementById("heroMeta").innerHTML = metaBits.join("");
 
-  // ---- Hero: auto-playing restoration sequence ----
+  // ---- Restoration sequence driver ----
+  // Dormant: the rail has moved out of the hero and has not been rebuilt
+  // elsewhere yet. This returns immediately while #heroRail is absent, and
+  // will drive the rail again wherever it lands, as long as that markup
+  // keeps the .rail-step / data-stage contract.
   (function heroSequence() {
     var hero = document.getElementById("hero");
     var rail = document.getElementById("heroRail");
