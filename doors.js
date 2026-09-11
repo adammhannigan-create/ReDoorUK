@@ -12,6 +12,10 @@ window.REDOOR_DATA = {
   config: {
     shopName: "ReDoor",
     tagline: "Restored garage doors, given a second life.",
+    // Short line under the hero headline. Sits over a photo, so keep it
+    // to a sentence or two. The longer `blurb` below is used elsewhere.
+    heroLede:
+      "Salvaged, stripped, serviced and repainted to order. Fully working, ready to fit, and a fraction of the price of new.",
     blurb:
       "Salvaged from old houses, then cleaned, serviced and repainted to order. Every door is checked over and ready to fit. You wouldn't think twice about a good second-hand car; a properly restored garage door is no different. Have a look, then get in touch.",
     // Fill these in with Dad's real details:
