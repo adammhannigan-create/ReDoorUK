@@ -5,3 +5,4 @@ package.json
 .claude/
 _backup/
 images/originals/
+_to_delete/index.lock.stale
