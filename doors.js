@@ -22,7 +22,7 @@ window.REDOOR_DATA = {
     contactEmail: "adammhannigan@gmail.com",
     contactPhone: "+44 7853 264404",
     area: "Collection / local delivery",
-    lastUpdated: "2026-09-04"
+    lastUpdated: "2026-09-17"
     // The hero is now an illustrated 5-stage restoration sequence drawn in
     // index.html. There is no hero image or video to configure here.
   },
@@ -140,6 +140,114 @@ window.REDOOR_DATA = {
   },
 
   doors: [
+    {
+      id: "d-20260917-lpu42-georgian",
+      title: "Hörmann LPU 42 Georgian sectional, White",
+      type: "Sectional (insulated)",
+      category: "Sectional",
+      dim: { w: 2700, h: 2000 },
+      price: 1095,
+      priceNote: "Motor, two fobs and a 12 month ReDoor warranty included",
+      condition: "As new, with an as-new Hörmann Promatic motor and two new fobs",
+      age: "2017",
+      size: "2700 × 2000 mm (106\" × 79\")",
+      sizeAdjustable: false,
+      sizeNote: "",
+      colourOptions: ["White"],
+      description:
+        "A Hörmann LPU 42 Georgian sectional in white, insulated, with the raised panel look that suits an older house. It can go in on either low or standard headroom and there is an in-between fit kit available, so it will work in most garages. Comes complete with an as-new Hörmann Promatic motor and two new fobs, backed by a 12 month ReDoor warranty.",
+      photos: ["images/d-20260917-lpu42-georgian-1.jpg"],
+      status: "available",
+      dateAdded: "2026-09-17"
+    },
+    {
+      id: "d-20260917-up-and-over-oak",
+      title: "Up and over, Golden Oak smooth",
+      type: "Up and Over",
+      category: "Up and Over",
+      dim: { w: 2440, h: 1981 },
+      price: 695,
+      priceNote: "Matching steel frame included. Hörmann motor available from stock",
+      grade: "A+",
+      condition: "New old stock, never fitted",
+      age: "New old stock",
+      size: "2440 × 1981 mm (8'0\" × 6'6\")",
+      sizeAdjustable: false,
+      sizeNote: "",
+      colourOptions: ["Golden Oak"],
+      description:
+        "An up and over door in Golden Oak with a smooth finish, never fitted, in the standard 8ft by 6ft 6in size so it drops straight into most openings. A matching steel frame comes with it, a Hörmann motor is available from stock if you want it automated, and it takes paint well if you would rather have it in a different colour.",
+      photos: [
+        "images/d-20260917-up-and-over-oak-1.jpg",
+        "images/d-20260917-up-and-over-oak-2.jpg"
+      ],
+      status: "available",
+      dateAdded: "2026-09-17"
+    },
+    {
+      id: "d-20260917-up-and-over",
+      title: "Up and over, White, fully serviced",
+      type: "Up and Over",
+      category: "Up and Over",
+      dim: { w: 2314, h: 1981 },
+      price: 395,
+      priceNote: "Matching steel frame included",
+      grade: "A",
+      condition: "As new, fully serviced. New handle and new locks with three heavy-duty keys",
+      age: "3 years old",
+      size: "2314 × 1981 mm (91\" × 78\")",
+      sizeAdjustable: false,
+      sizeNote: "",
+      colourOptions: ["White"],
+      description:
+        "An up and over door in white, in as-new condition and fully serviced, with a new handle and new locks supplied with three heavy-duty keys. It comes with a matching steel frame, a contrasting frame option, and it is remote control compatible if you want to add an opener later.",
+      photos: ["images/d-20260917-up-and-over-1.jpg"],
+      status: "available",
+      dateAdded: "2026-09-17"
+    },
+    {
+      id: "d-20260917-up-and-over-2",
+      title: "Up and over, White, fully serviced",
+      type: "Up and Over",
+      category: "Up and Over",
+      dim: { w: 2134, h: 2125 },
+      price: 395,
+      priceNote: "Matching steel frame included",
+      grade: "A",
+      condition: "As new, fully serviced. New handle and new locks with three heavy-duty keys",
+      age: "3 years old",
+      size: "2134 × 2125 mm (84\" × 84\")",
+      sizeAdjustable: false,
+      sizeNote: "",
+      colourOptions: ["White"],
+      description:
+        "An up and over door in white, in as-new condition and fully serviced, with a new handle and new locks supplied with three heavy-duty keys. It comes with a matching steel frame, a contrasting frame option, and it is remote control compatible if you want to add an opener later.",
+      photos: ["images/d-20260917-up-and-over-2-1.jpg"],
+      status: "available",
+      dateAdded: "2026-09-17"
+    },
+    {
+      id: "d-20260904-hormann-m-ribbed-2",
+      stockCode: "0826003",
+      title: "Hörmann M-ribbed sectional, Anthracite",
+      type: "Sectional",
+      category: "Sectional",
+      dim: { w: 2134, h: 2125 },
+      price: 1095,
+      priceNote: "Motor, fobs & frame kit included",
+      grade: "A+",
+      condition: "New old stock, never fitted. Panels are unmarked and the whole door has been serviced and repacked",
+      age: "2021 (new old stock)",
+      size: "2134 × 2125 mm (84\" × 84\")",
+      sizeAdjustable: false,
+      sizeNote: "",
+      colourOptions: ["RAL 7016 Anthracite Grey"],
+      description:
+        "A Hörmann M-ribbed sectional in Anthracite RAL 7016 with a smooth Planar finish. Built in 2021 and never fitted, so the panels are still as they left the factory. A brand-new Schartec 600 motor, two new fobs and a matching frame kit come with it, so there is nothing else to buy for the fit.",
+      photos: ["images/d-20260904-hormann-m-ribbed-2-1.jpg"],
+      status: "available",
+      dateAdded: "2026-09-04"
+    },
     {
       id: "d-20260904-hormann-m-ribbed-oak",
       stockCode: "0826005",
