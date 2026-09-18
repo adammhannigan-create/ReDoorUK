@@ -1015,23 +1015,6 @@
     .eco-stat { max-width: 320px; }
   }
 
-  /* ---------- See more button ---------- */
-  .more-wrap { display: flex; justify-content: center; padding: 4px 0 72px; }
-  .more-btn {
-    font-family: var(--font-mono);
-    font-size: 0.82rem;
-    letter-spacing: 0.02em;
-    padding: 11px 26px;
-    border: 1px solid var(--line-strong);
-    background: var(--surface);
-    color: var(--ink);
-    border-radius: 999px;
-    cursor: pointer;
-    transition: background .18s var(--ease), border-color .18s var(--ease), transform .12s var(--ease);
-  }
-  .more-btn:hover { border-color: var(--ink); background: var(--bg); }
-  .more-btn:active { transform: translateY(1px); }
-
   /* ---------- Grading + Delivery split ---------- */
   .gd-split {
     display: grid;
@@ -1473,9 +1456,6 @@
 
     <div class="wrap" id="stock">
       <div class="grid" id="grid"></div>
-      <div class="more-wrap" id="moreWrap" hidden>
-        <button class="more-btn" id="moreBtn" type="button">See more</button>
-      </div>
     </div>
   </div>
 
@@ -2123,48 +2103,20 @@
     return d.status !== "sold";
   }
 
-  var PAGE_SIZE = 3;
-  var visibleCount = PAGE_SIZE;
-  var moreWrap = document.getElementById("moreWrap");
-  var moreBtn = document.getElementById("moreBtn");
-
   function render() {
     var list = doors.filter(function (d) { return passesType(d) && passesStatus(d); }).sort(orderCmp);
     if (!list.length) {
       grid.innerHTML = '<div class="empty">Nothing of that type to show right now. Try another filter, or check back soon.</div>';
-      if (moreWrap) moreWrap.hidden = true;
       return;
     }
-    var shown = list.slice(0, visibleCount);
-    grid.innerHTML = shown.map(cardHTML).join("");
+    grid.innerHTML = list.map(cardHTML).join("");
     var cards = grid.querySelectorAll(".door");
     for (var i = 0; i < cards.length; i++) {
       var c = cards[i];
       c.style.transitionDelay = Math.min(i * 45, 320) + "ms";
       if (io) io.observe(c); else c.classList.add("in");
     }
-    var remaining = list.length - visibleCount;
-    if (moreWrap && moreBtn) {
-      if (remaining > 0) {
-        moreWrap.hidden = false;
-        moreBtn.textContent = "See more (" + remaining + ")";
-      } else {
-        moreWrap.hidden = true;
-      }
-    }
   }
-
-  if (moreBtn) moreBtn.addEventListener("click", function () {
-    var firstNew = visibleCount;
-    visibleCount += PAGE_SIZE;
-    render();
-    var cards = grid.querySelectorAll(".door");
-    var target = cards[firstNew];
-    if (target) {
-      target.setAttribute("tabindex", "-1");
-      target.focus({ preventScroll: true });
-    }
-  });
 
   // type filter buttons
   var typeBtns = document.querySelectorAll("#typeFilters .filter");
@@ -2188,7 +2140,6 @@
       Array.prototype.forEach.call(typeBtns, function (x) { x.setAttribute("aria-pressed", "false"); });
       b.setAttribute("aria-pressed", "true");
       currentType = b.getAttribute("data-type");
-      visibleCount = PAGE_SIZE;
       render();
     });
   });
@@ -2197,7 +2148,6 @@
   var statusSel = document.getElementById("statusSelect");
   if (statusSel) statusSel.addEventListener("change", function () {
     currentStatus = statusSel.value;
-    visibleCount = PAGE_SIZE;
     render();
   });
 
