@@ -212,9 +212,10 @@
     isolation: isolate;
     display: flex;
     flex-direction: column;
-    /* The photograph is the argument, so it gets real height and the copy
-       sits low against it rather than floating in the middle. */
-    min-height: clamp(500px, 78vh, 780px);
+    /* The photograph is the argument, so it fills the first screen on load;
+       the copy sits low against it rather than floating in the middle. */
+    min-height: 100vh;
+    min-height: 100svh;
     justify-content: flex-end;
     background: #0B0C0E;
     color: #F5F5F2;
