@@ -22,7 +22,7 @@ window.REDOOR_DATA = {
     contactEmail: "adammhannigan@gmail.com",
     contactPhone: "+44 7853 264404",
     area: "Collection / local delivery",
-    lastUpdated: "2026-09-17"
+    lastUpdated: "2026-09-22"
     // The hero is now an illustrated 5-stage restoration sequence drawn in
     // index.html. There is no hero image or video to configure here.
   },
@@ -140,6 +140,30 @@ window.REDOOR_DATA = {
   },
 
   doors: [
+    {
+      id: "d-20260922-novoferm-black-ribbed",
+      stockCode: "0926007",
+      title: "Novoferm up and over, Black vertical ribbed",
+      type: "Up and Over",
+      category: "Up and Over",
+      dim: { w: 2134, h: 2134 },
+      price: 450,
+      grade: "A",
+      condition: "Fully serviced, excellent condition. Novoferm handle and lock in good working order",
+      age: "2019",
+      size: "2134 \u00d7 2134 mm (7'0\" \u00d7 7'0\")",
+      sizeAdjustable: false,
+      sizeNote: "",
+      colourOptions: ["Black"],
+      description:
+        "A Novoferm up and over in black with vertical ribbed steel panels, from 2019. Fully serviced and in excellent order, so it is ready to go straight into a standard 7ft by 7ft single garage opening.",
+      photos: [
+        "images/d-20260922-novoferm-black-ribbed-1.jpg",
+        "images/d-20260922-novoferm-black-ribbed-2.jpg"
+      ],
+      status: "available",
+      dateAdded: "2026-09-22"
+    },
     {
       id: "d-20260917-lpu42-georgian",
       title: "Hörmann LPU 42 Georgian sectional, White",
