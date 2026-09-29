@@ -104,6 +104,32 @@ window.REDOOR_DATA = {
     sourceUrl: "https://www.gov.uk/government/statistics/uk-waste-data/uk-statistics-on-waste"
   },
 
+  // 12-month guarantee: mirrors ReDoor-12-Month-Guarantee.pdf.
+  // If the certificate changes, change it here too.
+  guarantee: {
+    eyebrow: "The ReDoor guarantee",
+    heading: "Guaranteed for 12 months",
+    blurb:
+      "Every door we restore is stripped back, repaired and refitted by hand, then guaranteed for twelve months from the date of installation. If anything's not right, get in touch straight away.",
+    headline: "12 / 6",
+    headlineLabel: "Months",
+    summary:
+      "12 months on the restoration and workmanship. 6 months on hardware, springs and locks under normal working conditions.",
+    covered: [
+      { title: "The restoration itself", desc: "Our workmanship on the door, panels and frame for 12 months from installation." },
+      { title: "Hardware, springs & locks", desc: "Covered for 6 months from installation, under normal working conditions." },
+      { title: "Fair use & care", desc: "Any fault arising from how the door was fitted or restored." }
+    ],
+    excluded: [
+      { title: "Accidental damage", desc: "Any damage caused by accident after installation." },
+      { title: "Obstructions", desc: "Damage from the door striking a foreign object." },
+      { title: "Third-party damage", desc: "Damage caused by anyone other than ReDoor." }
+    ],
+    certificateUrl: "ReDoor-12-Month-Guarantee.pdf",
+    certificateLabel: "Download the guarantee certificate",
+    certificateMeta: "PDF · 64 KB"
+  },
+
   // Grading: the colour-coded badge in the corner of each listing.
   // Dad sets each door's `grade` to one of: "A+", "A", "B", "C", "D".
   grading: {
